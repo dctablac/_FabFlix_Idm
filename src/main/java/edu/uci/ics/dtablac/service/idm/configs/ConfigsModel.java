@@ -1,4 +1,4 @@
-package edu.uci.ics.UCNETID.service.idm.configs;
+package edu.uci.ics.dtablac.service.idm.configs;
 
 import java.util.Map;
 
@@ -14,9 +14,7 @@ public class ConfigsModel {
         return serviceConfig;
     }
 
-    public void setServiceConfig(Map<String, String> serviceConfig) {
-        this.serviceConfig = serviceConfig;
-    }
+    public void setServiceConfig(Map<String, String> serviceConfig) { this.serviceConfig = serviceConfig; }
 
     public Map<String, String> getLoggerConfig() {
         return loggerConfig;

@@ -1,4 +1,4 @@
-package edu.uci.ics.UCNETID.service.idm.logger;
+package edu.uci.ics.dtablac.service.idm.logger;
 
 import java.io.File;
 import java.io.IOException;

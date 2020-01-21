@@ -1,4 +1,4 @@
-package edu.uci.ics.UCNETID.service.idm.security;
+package edu.uci.ics.dtablac.service.idm.security;
 
 import java.sql.Timestamp;
 
@@ -37,7 +37,7 @@ public class Session {
         this.email = email;
         this.sessionID = sessionID;
         this.timeCreated = timeCreated;
-        this.lastUsed = timeCreated;
+        this.lastUsed = lastUsed; // changed 'timeCreated' to lastUsed that was given in body. ** maybe not?
         this.exprTime = exprTime;
     }
 

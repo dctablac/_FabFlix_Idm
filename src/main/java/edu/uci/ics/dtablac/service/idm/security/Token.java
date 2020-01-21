@@ -1,4 +1,4 @@
-package edu.uci.ics.UCNETID.service.idm.security;
+package edu.uci.ics.dtablac.service.idm.security;
 
 import java.security.SecureRandom;
 import java.util.Arrays;
