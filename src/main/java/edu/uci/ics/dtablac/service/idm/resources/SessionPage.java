@@ -1,5 +1,6 @@
 package edu.uci.ics.dtablac.service.idm.resources;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -41,18 +42,18 @@ public class SessionPage {
             String session_id = requestModel.getSESSION_ID();
             sesh_id = session_id;
 
-            if (invalidEmailFormat(email)) {
-                resultCode = -11;
-                responseModel = new SessionResponseModel(resultCode,
-                        "Email address has invalid format.", null);
-                ServiceLogger.LOGGER.info("Email address has invalid format.");
-                return Response.status(Status.BAD_REQUEST).entity(responseModel).build();
-            }
-            else if (invalidEmailLength(email)) {
+            if (invalidEmailLength(email)) {
                 resultCode= -10;
                 responseModel = new SessionResponseModel(resultCode,
                         "Email address has invalid length.", null);
                 ServiceLogger.LOGGER.info("Email address has invalid length.");
+                return Response.status(Status.BAD_REQUEST).entity(responseModel).build();
+            }
+            else if (invalidEmailFormat(email)) {
+                resultCode = -11;
+                responseModel = new SessionResponseModel(resultCode,
+                        "Email address has invalid format.", null);
+                ServiceLogger.LOGGER.info("Email address has invalid format.");
                 return Response.status(Status.BAD_REQUEST).entity(responseModel).build();
             }
             else if (invalidTokenLength(session_id)) {
@@ -70,6 +71,9 @@ public class SessionPage {
                 return Response.status(Status.OK).entity(responseModel).build();
             }
             resultCode = getSessionStatus(email, session_id);
+            if (resultCode == 130) {
+                resultCode = SessionRecords.sessionValidation(email, session_id);
+            }
         }
         catch (IOException e) {
             e.printStackTrace();
@@ -86,20 +90,42 @@ public class SessionPage {
                 return Response.status(Status.BAD_REQUEST).entity(responseModel).build();
             }
         }
-        responseModel = new SessionResponseModel(resultCode, "Session is active", sesh_id);
+        if (resultCode == 131) {
+            responseModel = new SessionResponseModel(resultCode, "Session is expired.", null);
+            return Response.status(Status.OK).entity(responseModel).build();
+        }
+        else if (resultCode == 132) {
+            responseModel = new SessionResponseModel(resultCode, "Session is closed.", null);
+            return Response.status(Status.OK).entity(responseModel).build();
+        }
+        else if (resultCode == 133) {
+            responseModel = new SessionResponseModel(resultCode, "Session is revoked.", null);
+            return Response.status(Status.OK).entity(responseModel).build();
+        }
+
+        responseModel = new SessionResponseModel(resultCode, "Session is active.", sesh_id);
         return Response.status(Status.OK).entity(responseModel).build();
     }
 
     boolean invalidEmailFormat(String email) {
-        return !email.matches("[a-zA-Z0-9]*@[a-zA-Z0-9_]*\\.[a-zA-Z0-9_]*");
+        return !email.matches("[a-zA-Z0-9]+@[a-zA-Z0-9]+\\.[a-zA-Z0-9]+");
     }
 
     boolean invalidEmailLength(String email) {
-        return email.length() > 50;
+        if (email == null) {
+            return true;
+        }
+        if (email.equals("")) {
+            return true;
+        }
+        if (email.length() > 50) {
+            return true;
+        }
+        return false;
     }
 
     boolean invalidTokenLength(String session_id) {
-        return (session_id == null) || (session_id.length() > 128);
+        return session_id.length() != 128;
     }
 
     boolean userNotFound(String email) {

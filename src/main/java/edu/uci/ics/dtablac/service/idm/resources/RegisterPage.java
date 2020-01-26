@@ -18,6 +18,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 import java.io.IOException;
+import java.util.Arrays;
 
 import edu.uci.ics.dtablac.service.idm.core.RegisterRecords;
 
@@ -55,14 +56,14 @@ public class RegisterPage {
                 responseModel = new RegisterResponseModel(resultCode, "Password has invalid length.");
                 return Response.status(Status.BAD_REQUEST).entity(responseModel).build();
             }
+            if (invalidEmailLength(EMAIL)) {
+                resultCode = -10;
+                responseModel = new RegisterResponseModel(resultCode, "Email address had invalid length.");
+                return Response.status(Status.BAD_REQUEST).entity(responseModel).build();
+            }
             if (incorrectEmailFormat(EMAIL)) {
                 resultCode = -11;
                 responseModel = new RegisterResponseModel(resultCode,"Email address has invalid format.");
-                return Response.status(Status.BAD_REQUEST).entity(responseModel).build();
-            }
-            if (emailTooLong(EMAIL)) {
-                resultCode = -10;
-                responseModel = new RegisterResponseModel(resultCode, "Email address had invalid length.");
                 return Response.status(Status.BAD_REQUEST).entity(responseModel).build();
             }
             if (passwordTooShort(PASSWORD) || passwordTooLong(PASSWORD)) {
@@ -104,11 +105,20 @@ public class RegisterPage {
     }
 
     boolean incorrectEmailFormat(String email) {
-        return !email.matches("[a-zA-Z0-9]*@[a-zA-Z0-9_]*\\.[a-zA-Z0-9_]*");
+        return !email.matches("[a-zA-Z0-9]+@[a-zA-Z0-9]+\\.[a-zA-Z0-9]+");
     }
 
-    boolean emailTooLong(String email) {
-        return email.length() > 50;
+    boolean invalidEmailLength(String email) {
+        if (email == null) {
+            return true;
+        }
+        if (email.equals("")) {
+            return true;
+        }
+        if (email.length() > 50) {
+            return true;
+        }
+        return false;
     }
 
     boolean passwordTooLong(char[] password) {
@@ -121,7 +131,13 @@ public class RegisterPage {
 
     // check if null or empty password
     boolean invalidPasswordLength(char[] password) {
-        return password == null;
+        if (password == null) {
+            return true;
+        }
+        if (password.length == 0) {
+            return true;
+        }
+        return false;
     }
 
     boolean incorrectPasswordFormat(char[] password) {

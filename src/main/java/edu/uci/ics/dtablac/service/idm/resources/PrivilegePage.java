@@ -46,18 +46,18 @@ public class PrivilegePage {
                 ServiceLogger.LOGGER.warning("Privilege level out of valid range.");
                 return Response.status(Status.BAD_REQUEST).entity(responseModel).build();
             }
-            if (invalidEmailFormat(email)) {
-                resultCode = -11;
-                responseModel = new PrivilegeResponseModel(resultCode,
-                        "Email address has invalid format.");
-                ServiceLogger.LOGGER.warning("Email address has invalid format.");
-                return Response.status(Status.BAD_REQUEST).entity(responseModel).build();
-            }
             if (invalidEmailLength(email)) {
                 resultCode = -10;
                 responseModel = new PrivilegeResponseModel(resultCode,
                         "Email address has invalid length.");
                 ServiceLogger.LOGGER.warning("Email address has invalid length.");
+                return Response.status(Status.BAD_REQUEST).entity(responseModel).build();
+            }
+            if (invalidEmailFormat(email)) {
+                resultCode = -11;
+                responseModel = new PrivilegeResponseModel(resultCode,
+                        "Email address has invalid format.");
+                ServiceLogger.LOGGER.warning("Email address has invalid format.");
                 return Response.status(Status.BAD_REQUEST).entity(responseModel).build();
             }
             if (userNotFound(email)) {
@@ -99,15 +99,24 @@ public class PrivilegePage {
     }
 
     boolean plevelOutOfRange(Integer plevel) {
-        return (plevel < 0) || (plevel > 5);
+        return (plevel < 1) || (plevel > 5);
     }
 
     boolean invalidEmailFormat(String email) {
-        return !email.matches("[a-zA-Z0-9]*@[a-zA-Z0-9_]*\\.[a-zA-Z0-9_]*");
+        return !email.matches("[a-zA-Z0-9]+@[a-zA-Z0-9]+\\.[a-zA-Z0-9]+");
     }
 
     boolean invalidEmailLength(String email) {
-        return email.length() > 50 || email == null;
+        if (email == null) {
+            return true;
+        }
+        if (email.equals("")) {
+            return true;
+        }
+        if (email.length() > 50) {
+            return true;
+        }
+        return false;
     }
 
     boolean userNotFound(String email) {

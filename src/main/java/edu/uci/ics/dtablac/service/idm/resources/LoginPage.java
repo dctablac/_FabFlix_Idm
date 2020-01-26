@@ -9,6 +9,7 @@ package edu.uci.ics.dtablac.service.idm.resources;
 //   new session.
 // Inserts/updates records in the "session" table.
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -48,20 +49,6 @@ public class LoginPage {
             String email = requestModel.getEMAIL();
             char[] password = requestModel.getPASSWORD();
 
-            if (invalidPasswordLength(password)) {
-                resultCode = -12;
-                responseModel = new LoginResponseModel(resultCode,
-                        "Password has invalid length.", null);
-                ServiceLogger.LOGGER.warning("Password has invalid length.");
-                return Response.status(Status.BAD_REQUEST).entity(responseModel).build();
-            }
-            if (invalidEmailFormat(email)) {
-                resultCode = -11;
-                responseModel = new LoginResponseModel(resultCode,
-                        "Email address has invalid format.", null);
-                ServiceLogger.LOGGER.warning("Email address has invalid format.");
-                return Response.status(Status.BAD_REQUEST).entity(responseModel).build();
-            }
             if (invalidEmailLength(email)) {
                 resultCode = -10;
                 responseModel = new LoginResponseModel(resultCode,
@@ -69,14 +56,28 @@ public class LoginPage {
                 ServiceLogger.LOGGER.warning("Email address has invalid length.");
                 return Response.status(Status.BAD_REQUEST).entity(responseModel).build();
             }
-            if (userNotFound(email)) {
+            else if (invalidPasswordLength(password)) {
+                resultCode = -12;
+                responseModel = new LoginResponseModel(resultCode,
+                        "Password has invalid length.", null);
+                ServiceLogger.LOGGER.warning("Password has invalid length.");
+                return Response.status(Status.BAD_REQUEST).entity(responseModel).build();
+            }
+            else if (invalidEmailFormat(email)) {
+                resultCode = -11;
+                responseModel = new LoginResponseModel(resultCode,
+                        "Email address has invalid format.", null);
+                ServiceLogger.LOGGER.warning("Email address has invalid format.");
+                return Response.status(Status.BAD_REQUEST).entity(responseModel).build();
+            }
+            else if (userNotFound(email)) {
                 resultCode = 14;
                 responseModel = new LoginResponseModel(resultCode,
                         "User not found.", null);
                 ServiceLogger.LOGGER.info("User not found.");
                 return Response.status(Status.OK).entity(responseModel).build();
             }
-            if (passwordsDoNotMatch(email, password)) {
+            else if (passwordsDoNotMatch(email, password)) {
                 resultCode = 11;
                 responseModel = new LoginResponseModel(resultCode,
                         "Passwords do not match.", null);
@@ -112,15 +113,30 @@ public class LoginPage {
     }
 
     boolean invalidPasswordLength(char[] password) {
-        return password == null || password.length < 7 || password.length > 16;
+        if (password == null) {
+            return true;
+        }
+        if ((password.length < 7) || (password.length > 16)) {
+            return true;
+        }
+        return false;
     }
 
     boolean invalidEmailFormat(String email) {
-        return !email.matches("[a-zA-Z0-9]*@[a-zA-Z0-9_]*\\.[a-zA-Z0-9_]*");
+        return !email.matches("[a-zA-Z0-9]+@[a-zA-Z0-9]+\\.[a-zA-Z0-9]+");
     }
 
     boolean invalidEmailLength(String email) {
-        return email.length() > 50 || email == null;
+        if (email == null) {
+            return true;
+        }
+        if (email.equals("")) {
+            return true;
+        }
+        if (email.length() > 50) {
+            return true;
+        }
+        return false;
     }
 
     boolean passwordsDoNotMatch(String email, char[] password) {
