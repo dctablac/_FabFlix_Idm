@@ -33,7 +33,6 @@ public class PrivilegePage {
 
         try {
             requestModel = mapper.readValue(jsonText, PrivilegeRequestModel.class);
-            ServiceLogger.LOGGER.info("Received [POST] login request.");
             ServiceLogger.LOGGER.info("Request:\n" + jsonText);
 
             String email = requestModel.getEMAIL();

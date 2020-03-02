@@ -204,4 +204,6 @@ public class IDMService {
         return con;
     }
 
+    public static ServiceConfigs getServiceConfigs() { return serviceConfigs; }
+
 }

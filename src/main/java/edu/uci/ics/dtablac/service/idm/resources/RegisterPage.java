@@ -50,6 +50,7 @@ public class RegisterPage {
 
             String EMAIL = requestModel.getEMAIL();
             char[] PASSWORD = requestModel.getPASSWORD();
+            
 
             if (invalidPasswordLength(PASSWORD)) {
                 resultCode = -12;
