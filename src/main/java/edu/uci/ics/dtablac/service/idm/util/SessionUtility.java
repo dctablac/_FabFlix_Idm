@@ -40,13 +40,13 @@ public class SessionUtility {
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     public static Response verifySession(String email, String session_id) {
-        SessionResponseModel responseModel = null;
-
         PreparedStatement ps = SessionRecords.buildQuerySession(email, session_id);
 
-        responseModel = SessionRecords.sessionStatus(ps);
+        SessionResponseModel responseModel = SessionRecords.sessionStatus(ps);
 
-        return Response.status(Response.Status.OK).entity(responseModel).build();
+        Response response = Response.status(Response.Status.OK).header("email", email).header("session_id", session_id).entity(responseModel).build();
+
+        return response;
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////

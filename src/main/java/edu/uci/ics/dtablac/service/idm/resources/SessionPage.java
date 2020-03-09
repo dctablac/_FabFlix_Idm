@@ -7,6 +7,7 @@ import edu.uci.ics.dtablac.service.idm.core.SessionRecords;
 import edu.uci.ics.dtablac.service.idm.models.SessionRequestModel;
 import edu.uci.ics.dtablac.service.idm.models.SessionResponseModel;
 import edu.uci.ics.dtablac.service.idm.util.SessionUtility;
+import edu.uci.ics.dtablac.service.idm.logger.ServiceLogger;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
@@ -24,7 +25,7 @@ public class SessionPage {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response session(String jsonText) {
+    public Response session(@Context HttpHeaders headers, String jsonText) {
         // Declare mappers and models
         Response response;
         ObjectMapper mapper  = new ObjectMapper();
@@ -43,13 +44,15 @@ public class SessionPage {
                 return response;
             }
 
-            // Verify the session's details
-            response = SessionUtility.verifySession(email, session_id);
-
             // Update the session if needed. (if not found, skip)
-            if (SessionRecords.sessionExists(email, session_id)) {
-                SessionRecords.sessionValidation(email, session_id);
+            if (!SessionRecords.sessionExists(email, session_id)) {
+                responseModel = new SessionResponseModel(134, "Session not found.", null);
+                return Response.status(Status.OK).entity(responseModel).build();
             }
+
+            // Verify the session's details
+            String sesh_id = SessionRecords.sessionValidation(email, session_id);
+            response = SessionUtility.verifySession(email, sesh_id);
         }
         catch (IOException e) {
             if (e instanceof JsonParseException) {

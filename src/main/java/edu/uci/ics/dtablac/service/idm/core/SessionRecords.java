@@ -184,21 +184,22 @@ public class SessionRecords {
             PreparedStatement psLast = buildQueryUpdateLastUsed(email, session_id, currentTime.toString());
             psLast.executeUpdate();
 
-            if (((currentTime.getTime() - exprTime.getTime()) > timeout) && (status != 2 && status != 3)) {
+            if (((currentTime.getTime() - exprTime.getTime()) > timeout) && (status == 1)) {
                 PreparedStatement psUpdate = buildQueryUpdateStatus(session_id, 4);
                 psUpdate.executeUpdate();
                 ServiceLogger.LOGGER.warning("TIMEOUT. SESSION REVOKED. REPEAT LOGIN.");
                 return session_id;
             }
-            else if ((currentTime.after(exprTime)) && (status != 2 && status != 3)) {
+            else if ((currentTime.after(exprTime)) && (status == 1)) {
                 PreparedStatement psUpdate = buildQueryUpdateStatus(session_id, 3);
                 psUpdate.executeUpdate();
                 ServiceLogger.LOGGER.warning("TIMEOUT. SESSION EXPIRED. REPEAT LOGIN.");
                 return session_id;
             }
-            else if (((currentTime.getTime() - exprTime.getTime()) < timeout) && (status != 2 && status != 3)) {
+            else if (((currentTime.getTime() - exprTime.getTime()) < timeout) && (status == 1)) {
                 PreparedStatement psUpdate = buildQueryUpdateStatus(session_id, 4);
-                psUpdate.executeUpdate();
+                Integer affected = psUpdate.executeUpdate();
+                ServiceLogger.LOGGER.info(affected.toString());
                 ServiceLogger.LOGGER.warning("CURRENT SESSION REVOKED. NEW SESSION MADE WITHOUT LOGIN.");
                 addNewSession(temp.getSessionID().toString(), temp.getEmail(), 1,
                         temp.getTimeCreated(), temp.getLastUsed(), temp.getExprTime());

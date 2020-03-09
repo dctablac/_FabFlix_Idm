@@ -30,12 +30,22 @@ public class LoginRecords {
         return SELECT + FROM + WHERE;
     }
 
-    public static String queryActiveSession(String email) {
-        String SELECT = "SELECT *";
-        String FROM = " FROM session";
-        String WHERE = " WHERE email = \""+email+"\";";
+    public static PreparedStatement queryActiveSession(String email) {
+        String SELECT = "\nSELECT *\n";
+        String FROM = "FROM session\n";
+        String WHERE = "WHERE email = ? && status = 1;";
 
-        return SELECT + FROM + WHERE;
+        String query = SELECT + FROM + WHERE;
+
+        PreparedStatement ps = null;
+        try {
+            ps = IDMService.getCon().prepareStatement(query);
+            ps.setString(1, email);
+        }
+        catch (SQLException e) {
+            ServiceLogger.LOGGER.warning("Unable to build query for an active session");
+        }
+        return ps;
     }
 
     public static String queryRevokeSession(String sesh_id) {
@@ -60,8 +70,7 @@ public class LoginRecords {
     public static String getSeshID(String email) {
         String ID = null;
         try {
-            String query = queryActiveSession(email);
-            PreparedStatement ps = IDMService.getCon().prepareStatement(query);
+            PreparedStatement ps = queryActiveSession(email);
             ResultSet rs = ps.executeQuery();
             while(rs.next()) {
                 ID = rs.getString("session_id");
@@ -79,9 +88,7 @@ public class LoginRecords {
     public static void handleSession(String email) {
         try {
             // Gather active sessions to the email address.
-            String activeSessionQuery = queryActiveSession(email);
-            PreparedStatement psActive = IDMService.getCon().prepareStatement(activeSessionQuery);
-
+            PreparedStatement psActive = queryActiveSession(email);
             ResultSet rsActive = psActive.executeQuery();
 
             // Revoke existing and active sessions
