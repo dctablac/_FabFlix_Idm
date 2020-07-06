@@ -1,0 +1,63 @@
+[2020/07/06 09:20:51][CONFIG][initService]  Starting service...
+[2020/07/06 09:20:51][CONFIG][currentConfigs]  Scheme: http://
+[2020/07/06 09:20:51][CONFIG][currentConfigs]  Hostname: 0.0.0.0
+[2020/07/06 09:20:51][CONFIG][currentConfigs]  Port: 12346
+[2020/07/06 09:20:51][CONFIG][currentConfigs]  Path: /api/idm
+[2020/07/06 09:20:51][CONFIG][currentConfigs]  Logger output directory: ./logs/
+[2020/07/06 09:20:51][CONFIG][currentConfigs]  Database hostname: localhost
+[2020/07/06 09:20:51][CONFIG][currentConfigs]  Database port: 3307
+[2020/07/06 09:20:51][CONFIG][currentConfigs]  Database username: cs122bg35
+[2020/07/06 09:20:51][CONFIG][currentConfigs]  Database password provided? true
+[2020/07/06 09:20:51][CONFIG][currentConfigs]  Database name: cs122bg35
+[2020/07/06 09:20:51][CONFIG][currentConfigs]  Database driver: com.mysql.cj.jdbc.Driver
+[2020/07/06 09:20:51][CONFIG][currentConfigs]  Database connection settings: ?autoReconnect=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=PST
+[2020/07/06 09:20:51][CONFIG][currentConfigs]  Timeout: 600000
+[2020/07/06 09:20:51][CONFIG][currentConfigs]  Expiration: 1800000
+[2020/07/06 09:20:51][CONFIG][connectToDatabase]  Connecting to database...
+[2020/07/06 09:20:51][CONFIG][connectToDatabase]  Database URL: jdbc:mysql://localhost:3307/cs122bg35?autoReconnect=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=PST
+[2020/07/06 09:20:56][SEVERE][connectToDatabase]  Unable to connect to database.
+java.sql.SQLNonTransientConnectionException: Could not create connection to database server. Attempted reconnect 3 times. Giving up.
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:110)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:97)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:89)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:63)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:73)
+	at com.mysql.cj.jdbc.ConnectionImpl.connectWithRetries(ConnectionImpl.java:905)
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:830)
+	at com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:455)
+	at com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:240)
+	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:199)
+	at java.sql.DriverManager.getConnection(DriverManager.java:664)
+	at java.sql.DriverManager.getConnection(DriverManager.java:247)
+	at edu.uci.ics.dtablac.service.idm.IDMService.connectToDatabase(IDMService.java:151)
+	at edu.uci.ics.dtablac.service.idm.IDMService.initService(IDMService.java:50)
+	at edu.uci.ics.dtablac.service.idm.IDMService.main(IDMService.java:34)
+Caused by: com.mysql.cj.exceptions.CJException: Access denied for user 'cs122bg35'@'circinus-32.ics.uci.edu' (using password: YES)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:61)
+	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:105)
+	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:151)
+	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:129)
+	at com.mysql.cj.protocol.a.NativeProtocol.checkErrorMessage(NativeProtocol.java:816)
+	at com.mysql.cj.protocol.a.NativeProtocol.checkErrorMessage(NativeProtocol.java:741)
+	at com.mysql.cj.protocol.a.NativeProtocol.checkErrorMessage(NativeProtocol.java:709)
+	at com.mysql.cj.protocol.a.NativeProtocol.checkErrorMessage(NativeProtocol.java:132)
+	at com.mysql.cj.protocol.a.NativeAuthenticationProvider.proceedHandshakeWithPluggableAuthentication(NativeAuthenticationProvider.java:540)
+	at com.mysql.cj.protocol.a.NativeAuthenticationProvider.connect(NativeAuthenticationProvider.java:202)
+	at com.mysql.cj.protocol.a.NativeProtocol.connect(NativeProtocol.java:1449)
+	at com.mysql.cj.NativeSession.connect(NativeSession.java:165)
+	at com.mysql.cj.jdbc.ConnectionImpl.connectWithRetries(ConnectionImpl.java:849)
+	... 9 more
+
+[2020/07/06 09:20:56][CONFIG][initHTTPServer]  Initializing HTTP server...
+[2020/07/06 09:20:56][CONFIG][initHTTPServer]  Building URI from configs...
+[2020/07/06 09:20:56][CONFIG][initHTTPServer]  Final URI: http://0.0.0.0:12346/api/idm
+[2020/07/06 09:20:56][CONFIG][initHTTPServer]  Set Jersey resources.
+[2020/07/06 09:20:56][CONFIG][initHTTPServer]  Set Jackson as serializer.
+[2020/07/06 09:20:56][CONFIG][initHTTPServer]  Set session timeout and token expiration.
+[2020/07/06 09:20:56][CONFIG][initHTTPServer]  Starting HTTP server...
+[2020/07/06 09:20:57][CONFIG][initHTTPServer]  HTTP server started.
+[2020/07/06 09:20:57][CONFIG][initService]  Service initialized.

@@ -3,7 +3,6 @@ package edu.uci.ics.dtablac.service.idm.resources;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import edu.uci.ics.dtablac.service.idm.core.LoginRecords;
 import edu.uci.ics.dtablac.service.idm.core.PrivilegeRecords;
 import edu.uci.ics.dtablac.service.idm.logger.ServiceLogger;
 import edu.uci.ics.dtablac.service.idm.models.PrivilegeRequestModel;
