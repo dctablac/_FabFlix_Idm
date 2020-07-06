@@ -1,6 +1,6 @@
 serviceConfig:
     scheme: http://
-    hostName: 0.0.0.0
+    hostName: "fabflix-idm.herokuapp.com"
     port: 8080
     path: /api/idm
 
