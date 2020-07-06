@@ -8,9 +8,9 @@ public class ServiceConfigs {
     public static final int MAX_SERVICE_PORT = 65535;
 
     // Default gateway configs
-    private final String DEFAULT_SCHEME = "http://";
-    private final String DEFAULT_HOSTNAME = "0.0.0.0";
-    private final int DEFAULT_PORT = 6243;
+    private final String DEFAULT_SCHEME = "https://";
+    private final String DEFAULT_HOSTNAME = "fabflix-idm.herokuapp.com";
+    private final int DEFAULT_PORT = 8080;
     private final String DEFAULT_PATH = "/api/idm";
     // Default logger configs
     private final String DEFAULT_OUTPUTDIR = "./logs/";
@@ -18,6 +18,7 @@ public class ServiceConfigs {
     /// Default session configs
     private final long DEFAULT_TIMEOUT = 600000; // 10 minute timeout
     private final long DEFAULT_EXPIRATION = 1800000; // 30 min expiration
+    //
 
     // Service configs
     private String scheme;

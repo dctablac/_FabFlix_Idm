@@ -1,0 +1,1 @@
+web: java -jar build/libs/edu.uci.ics.dtablac.service.idm.jar -c config.yaml
