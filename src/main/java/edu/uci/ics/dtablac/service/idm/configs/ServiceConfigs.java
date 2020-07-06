@@ -18,7 +18,6 @@ public class ServiceConfigs {
     /// Default session configs
     private final long DEFAULT_TIMEOUT = 600000; // 10 minute timeout
     private final long DEFAULT_EXPIRATION = 1800000; // 30 min expiration
-    //
 
     // Service configs
     private String scheme;

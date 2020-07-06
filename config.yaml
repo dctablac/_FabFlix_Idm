@@ -1,6 +1,6 @@
 serviceConfig:
-    scheme: https://
-    hostName: fablix-idm.herokuapp.com
+    scheme: http://
+    hostName: 0.0.0.0
     port: 8080
     path: /api/idm
 
@@ -12,7 +12,7 @@ databaseConfig:
     dbUsername: bfd056424efd92
     dbPassword: 370bd420
     dbHostname: bfd056424efd92
-    dbPort: 3306
+    dbPort: 370
     dbDriver: com.mysql.cj.jdbc.Driver
     dbName: heroku_e3f7fc48a1e5c29
     dbSettings: ?autoReconnect=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=PST
