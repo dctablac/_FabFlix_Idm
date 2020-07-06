@@ -1,1 +1,1 @@
-web: java -jar build/libs/edu.uci.ics.dtablac.service.idm.jar -c config.yaml
+web: java -Dserver.port=8080 -jar build/libs/edu.uci.ics.dtablac.service.idm.jar -c config.yaml
