@@ -140,10 +140,10 @@ public class IDMService {
     private void connectToDatabase() {
         ServiceLogger.LOGGER.config("Connecting to database...");
 
-        if (!serviceConfigs.isDbConfigValid()) {
+        /*if (!serviceConfigs.isDbConfigValid()) {
             ServiceLogger.LOGGER.config("Database configurations not valid. Cannot connect to database.");
             return;
-        }
+        }*/
 
         try {
             Class.forName(serviceConfigs.getDbDriver());

@@ -1,26 +1,21 @@
-[2020/07/06 13:56:48][CONFIG][initService]  Starting service...
-[2020/07/06 13:56:48][CONFIG][currentConfigs]  Scheme: http://
-[2020/07/06 13:56:48][CONFIG][currentConfigs]  Hostname: 0.0.0.0
-[2020/07/06 13:56:48][CONFIG][currentConfigs]  Port: 8080
-[2020/07/06 13:56:48][CONFIG][currentConfigs]  Path: /api/idm
-[2020/07/06 13:56:48][CONFIG][currentConfigs]  Logger output directory: ./logs/
-[2020/07/06 13:56:48][CONFIG][currentConfigs]  Database hostname: bfd056424efd92
-[2020/07/06 13:56:48][CONFIG][currentConfigs]  Database port: 370
-[2020/07/06 13:56:48][CONFIG][currentConfigs]  Database username: bfd056424efd92
-[2020/07/06 13:56:48][CONFIG][currentConfigs]  Database password provided? true
-[2020/07/06 13:56:48][CONFIG][currentConfigs]  Database name: heroku_e3f7fc48a1e5c29
-[2020/07/06 13:56:48][CONFIG][currentConfigs]  Database driver: com.mysql.cj.jdbc.Driver
-[2020/07/06 13:56:48][CONFIG][currentConfigs]  Database connection settings: ?autoReconnect=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=PST
-[2020/07/06 13:56:48][CONFIG][currentConfigs]  Timeout: 600000
-[2020/07/06 13:56:48][CONFIG][currentConfigs]  Expiration: 1800000
-[2020/07/06 13:56:48][CONFIG][connectToDatabase]  Connecting to database...
-[2020/07/06 13:56:48][CONFIG][connectToDatabase]  Database configurations not valid. Cannot connect to database.
-[2020/07/06 13:56:48][CONFIG][initHTTPServer]  Initializing HTTP server...
-[2020/07/06 13:56:48][CONFIG][initHTTPServer]  Building URI from configs...
-[2020/07/06 13:56:48][CONFIG][initHTTPServer]  Final URI: http://0.0.0.0:8080/api/idm
-[2020/07/06 13:56:48][CONFIG][initHTTPServer]  Set Jersey resources.
-[2020/07/06 13:56:48][CONFIG][initHTTPServer]  Set Jackson as serializer.
-[2020/07/06 13:56:48][CONFIG][initHTTPServer]  Set session timeout and token expiration.
-[2020/07/06 13:56:48][CONFIG][initHTTPServer]  Starting HTTP server...
-[2020/07/06 13:56:49][CONFIG][initHTTPServer]  HTTP server started.
-[2020/07/06 13:56:49][CONFIG][initService]  Service initialized.
+[2020/07/06 14:21:16][CONFIG][initService]  Starting service...
+[2020/07/06 14:21:16][CONFIG][currentConfigs]  Scheme: http://
+[2020/07/06 14:21:16][CONFIG][currentConfigs]  Hostname: 0.0.0.0
+[2020/07/06 14:21:16][CONFIG][currentConfigs]  Port: 8080
+[2020/07/06 14:21:16][CONFIG][currentConfigs]  Path: /api/idm
+[2020/07/06 14:21:16][CONFIG][currentConfigs]  Logger output directory: ./logs/
+[2020/07/06 14:21:16][CONFIG][currentConfigs]  Timeout: 600000
+[2020/07/06 14:21:16][CONFIG][currentConfigs]  Expiration: 1800000
+[2020/07/06 14:21:16][CONFIG][connectToDatabase]  Connecting to database...
+[2020/07/06 14:21:16][CONFIG][connectToDatabase]  Database URL: jdbc:mysql://bfd056424efd92:370bd420@us-cdbr-east-02.cleardb.com/heroku_e3f7fc48a1e5c29?reconnect=true
+[2020/07/06 14:21:17][CONFIG][connectToDatabase]  Connected to database: jdbc:mysql://bfd056424efd92:370bd420@us-cdbr-east-02.cleardb.com/heroku_e3f7fc48a1e5c29?reconnect=true
+[2020/07/06 14:21:17][CONFIG][initHTTPServer]  Initializing HTTP server...
+[2020/07/06 14:21:17][CONFIG][initHTTPServer]  Building URI from configs...
+[2020/07/06 14:21:17][CONFIG][initHTTPServer]  Final URI: http://0.0.0.0:8080/api/idm
+[2020/07/06 14:21:18][CONFIG][initHTTPServer]  Set Jersey resources.
+[2020/07/06 14:21:18][CONFIG][initHTTPServer]  Set Jackson as serializer.
+[2020/07/06 14:21:18][CONFIG][initHTTPServer]  Set session timeout and token expiration.
+[2020/07/06 14:21:18][CONFIG][initHTTPServer]  Starting HTTP server...
+[2020/07/06 14:21:18][CONFIG][initHTTPServer]  HTTP server started.
+[2020/07/06 14:21:18][CONFIG][initService]  Service initialized.
+[2020/07/06 14:25:34][INFO][helloWorld]  Hello!
