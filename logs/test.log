@@ -1,21 +1,85 @@
-[2020/07/06 14:21:16][CONFIG][initService]  Starting service...
-[2020/07/06 14:21:16][CONFIG][currentConfigs]  Scheme: http://
-[2020/07/06 14:21:16][CONFIG][currentConfigs]  Hostname: 0.0.0.0
-[2020/07/06 14:21:16][CONFIG][currentConfigs]  Port: 8080
-[2020/07/06 14:21:16][CONFIG][currentConfigs]  Path: /api/idm
-[2020/07/06 14:21:16][CONFIG][currentConfigs]  Logger output directory: ./logs/
-[2020/07/06 14:21:16][CONFIG][currentConfigs]  Timeout: 600000
-[2020/07/06 14:21:16][CONFIG][currentConfigs]  Expiration: 1800000
-[2020/07/06 14:21:16][CONFIG][connectToDatabase]  Connecting to database...
-[2020/07/06 14:21:16][CONFIG][connectToDatabase]  Database URL: jdbc:mysql://bfd056424efd92:370bd420@us-cdbr-east-02.cleardb.com/heroku_e3f7fc48a1e5c29?reconnect=true
-[2020/07/06 14:21:17][CONFIG][connectToDatabase]  Connected to database: jdbc:mysql://bfd056424efd92:370bd420@us-cdbr-east-02.cleardb.com/heroku_e3f7fc48a1e5c29?reconnect=true
-[2020/07/06 14:21:17][CONFIG][initHTTPServer]  Initializing HTTP server...
-[2020/07/06 14:21:17][CONFIG][initHTTPServer]  Building URI from configs...
-[2020/07/06 14:21:17][CONFIG][initHTTPServer]  Final URI: http://0.0.0.0:8080/api/idm
-[2020/07/06 14:21:18][CONFIG][initHTTPServer]  Set Jersey resources.
-[2020/07/06 14:21:18][CONFIG][initHTTPServer]  Set Jackson as serializer.
-[2020/07/06 14:21:18][CONFIG][initHTTPServer]  Set session timeout and token expiration.
-[2020/07/06 14:21:18][CONFIG][initHTTPServer]  Starting HTTP server...
-[2020/07/06 14:21:18][CONFIG][initHTTPServer]  HTTP server started.
-[2020/07/06 14:21:18][CONFIG][initService]  Service initialized.
-[2020/07/06 14:25:34][INFO][helloWorld]  Hello!
+[2020/08/16 14:59:44][CONFIG][initService]  Starting service...
+[2020/08/16 14:59:44][CONFIG][currentConfigs]  Scheme: http://
+[2020/08/16 14:59:44][CONFIG][currentConfigs]  Hostname: 0.0.0.0
+[2020/08/16 14:59:44][CONFIG][currentConfigs]  Port: 12346
+[2020/08/16 14:59:44][CONFIG][currentConfigs]  Path: /api/idm
+[2020/08/16 14:59:44][CONFIG][currentConfigs]  Logger output directory: ./logs/
+[2020/08/16 14:59:44][CONFIG][currentConfigs]  Database hostname: localhost
+[2020/08/16 14:59:44][CONFIG][currentConfigs]  Database port: 3306
+[2020/08/16 14:59:44][CONFIG][currentConfigs]  Database username: root
+[2020/08/16 14:59:44][CONFIG][currentConfigs]  Database password provided? true
+[2020/08/16 14:59:44][CONFIG][currentConfigs]  Database name: fabflix_idm
+[2020/08/16 14:59:44][CONFIG][currentConfigs]  Database driver: com.mysql.cj.jdbc.Driver
+[2020/08/16 14:59:44][CONFIG][currentConfigs]  Database connection settings: ?autoReconnect=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=PST
+[2020/08/16 14:59:44][CONFIG][currentConfigs]  Timeout: 600000
+[2020/08/16 14:59:44][CONFIG][currentConfigs]  Expiration: 1800000
+[2020/08/16 14:59:44][CONFIG][connectToDatabase]  Connecting to database...
+[2020/08/16 14:59:44][CONFIG][connectToDatabase]  Database URL: jdbc:mysql://localhost:3306/fabflix_idm?autoReconnect=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=PST
+[2020/08/16 14:59:45][CONFIG][connectToDatabase]  Connected to database: jdbc:mysql://localhost:3306/fabflix_idm?autoReconnect=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=PST
+[2020/08/16 14:59:45][CONFIG][initHTTPServer]  Initializing HTTP server...
+[2020/08/16 14:59:45][CONFIG][initHTTPServer]  Building URI from configs...
+[2020/08/16 14:59:45][CONFIG][initHTTPServer]  Final URI: http://0.0.0.0:12346/api/idm
+[2020/08/16 14:59:45][CONFIG][initHTTPServer]  Set Jersey resources.
+[2020/08/16 14:59:45][CONFIG][initHTTPServer]  Set Jackson as serializer.
+[2020/08/16 14:59:45][CONFIG][initHTTPServer]  Set session timeout and token expiration.
+[2020/08/16 14:59:45][CONFIG][initHTTPServer]  Starting HTTP server...
+[2020/08/16 14:59:45][CONFIG][initHTTPServer]  HTTP server started.
+[2020/08/16 14:59:45][CONFIG][initService]  Service initialized.
+[2020/08/16 15:00:05][INFO][register]  Received [POST] register request.
+[2020/08/16 15:00:05][INFO][register]  Request:
+{"email":"cress123@gmail.com","password":["P","a","s","s","w","o","r","d","1"]}
+[2020/08/16 15:00:05][INFO][emailExistsInDB]  Query: SELECT COUNT(*) AS Total FROM user WHERE 1=1 && email = "cress123@gmail.com";
+[2020/08/16 15:00:05][INFO][emailExistsInDB]  Trying query: com.mysql.cj.jdbc.ClientPreparedStatement: SELECT COUNT(*) AS Total FROM user WHERE 1=1 && email = "cress123@gmail.com";
+[2020/08/16 15:00:05][INFO][emailExistsInDB]  Query succeeded.
+[2020/08/16 15:00:05][INFO][registerUser]  Query: INSERT INTO user (email, status, plevel, salt, pword) VALUES ("cress123@gmail.com", 1, 5, "fec2c955", "a7febb813dbe0620f52672ab9f767253acb4c96125eda51292e1787bab1cc9723daf55f2e13e0f48d6ae384ae0cbc2dc6c382f067e771c3e7e5ada464ef8527c");
+[2020/08/16 15:00:05][INFO][registerUser]  Trying query: com.mysql.cj.jdbc.ClientPreparedStatement: INSERT INTO user (email, status, plevel, salt, pword) VALUES ("cress123@gmail.com", 1, 5, "fec2c955", "a7febb813dbe0620f52672ab9f767253acb4c96125eda51292e1787bab1cc9723daf55f2e13e0f48d6ae384ae0cbc2dc6c382f067e771c3e7e5ada464ef8527c");
+[2020/08/16 15:00:05][INFO][registerUser]  Query succeeded.
+[2020/08/16 15:00:14][INFO][loginUser]  Received [POST] login request.
+[2020/08/16 15:00:14][INFO][loginUser]  Request:
+{"email":"cress123@gmail.com","password":["P","a","s","s","w","o","r","d","1"]}
+[2020/08/16 15:00:14][INFO][emailNotFound]  Trying query: com.mysql.cj.jdbc.ClientPreparedStatement: SELECT Count(*) as EmailFound FROM user WHERE email = "cress123@gmail.com";
+[2020/08/16 15:00:14][INFO][emailNotFound]  Query succeeded.
+[2020/08/16 15:00:14][INFO][passwordsUnequal]  Trying query: com.mysql.cj.jdbc.ClientPreparedStatement: SELECT pword, salt FROM user WHERE email = "cress123@gmail.com";
+[2020/08/16 15:00:14][INFO][passwordsUnequal]  Query succeeded.
+[2020/08/16 15:00:14][INFO][loginUser]  User logged in successfully.
+[2020/08/16 15:00:29][INFO][sessionValidation]  1
+[2020/08/16 15:00:29][WARNING][sessionValidation]  CURRENT SESSION REVOKED. NEW SESSION MADE WITHOUT LOGIN.
+[2020/08/16 15:00:29][INFO][addNewSession]  Trying query: com.mysql.cj.jdbc.ClientPreparedStatement: INSERT INTO session(session_id, email, status, time_created, last_used, expr_time) VALUES ('a269c892fe458247fba22dbc18d6ab020db86293c6060e7ae60bad5c1383b2a40d6964ecb64b80a1440e9d19edf5a0a2fa8ff31473732e4d6094fc70e42e2027','cress123@gmail.com',1,'2020-08-16 15:00:29.75','2020-08-16 15:00:29.75','2020-08-16 15:30:29.75')
+[2020/08/16 15:00:29][INFO][addNewSession]  Query succeeded.
+[2020/08/16 15:00:29][INFO][verifyPrivilege]  Request:
+{"email":"cress123@gmail.com","plevel":4}
+[2020/08/16 15:00:29][INFO][emailNotFound]  Trying query: com.mysql.cj.jdbc.ClientPreparedStatement: SELECT Count(*) as EmailFound FROM user WHERE email = "cress123@gmail.com";
+[2020/08/16 15:00:29][INFO][emailNotFound]  Query succeeded.
+[2020/08/16 15:00:29][INFO][sufficientPrivilege]  Trying query: com.mysql.cj.jdbc.ClientPreparedStatement: SELECT plevel FROM user WHERE email = "cress123@gmail.com";
+[2020/08/16 15:00:29][INFO][sufficientPrivilege]  Query succeeded.
+[2020/08/16 15:00:29][WARNING][verifyPrivilege]  User has insufficient privilege level.
+[2020/08/16 15:00:36][INFO][sessionValidation]  1
+[2020/08/16 15:00:36][WARNING][sessionValidation]  CURRENT SESSION REVOKED. NEW SESSION MADE WITHOUT LOGIN.
+[2020/08/16 15:00:36][INFO][addNewSession]  Trying query: com.mysql.cj.jdbc.ClientPreparedStatement: INSERT INTO session(session_id, email, status, time_created, last_used, expr_time) VALUES ('46bd732a5e41fd6e36b35af0f309b95a75e3cc744f963d406969d0b29f84b4b9790c2bf93d82e0d104482bfb0a44d9ea683cf7a0078d0e74a8c85a9f571415c9','cress123@gmail.com',1,'2020-08-16 15:00:36.336','2020-08-16 15:00:36.336','2020-08-16 15:30:36.336')
+[2020/08/16 15:00:36][INFO][addNewSession]  Query succeeded.
+[2020/08/16 15:00:36][INFO][verifyPrivilege]  Request:
+{"email":"cress123@gmail.com","plevel":4}
+[2020/08/16 15:00:36][INFO][emailNotFound]  Trying query: com.mysql.cj.jdbc.ClientPreparedStatement: SELECT Count(*) as EmailFound FROM user WHERE email = "cress123@gmail.com";
+[2020/08/16 15:00:36][INFO][emailNotFound]  Query succeeded.
+[2020/08/16 15:00:36][INFO][sufficientPrivilege]  Trying query: com.mysql.cj.jdbc.ClientPreparedStatement: SELECT plevel FROM user WHERE email = "cress123@gmail.com";
+[2020/08/16 15:00:36][INFO][sufficientPrivilege]  Query succeeded.
+[2020/08/16 15:00:36][WARNING][verifyPrivilege]  User has insufficient privilege level.
+[2020/08/16 15:00:46][INFO][sessionValidation]  1
+[2020/08/16 15:00:46][WARNING][sessionValidation]  CURRENT SESSION REVOKED. NEW SESSION MADE WITHOUT LOGIN.
+[2020/08/16 15:00:46][INFO][addNewSession]  Trying query: com.mysql.cj.jdbc.ClientPreparedStatement: INSERT INTO session(session_id, email, status, time_created, last_used, expr_time) VALUES ('e311a0af678e3d1a524f2abf919356ac5af15db5d4e73c6f53faf0a24c804c711de093b873d9408a493e46a2a64494f3af2fbb4a85dd88702605b64176c7c708','cress123@gmail.com',1,'2020-08-16 15:00:45.997','2020-08-16 15:00:45.997','2020-08-16 15:30:45.997')
+[2020/08/16 15:00:46][INFO][addNewSession]  Query succeeded.
+[2020/08/16 15:00:46][INFO][verifyPrivilege]  Request:
+{"email":"cress123@gmail.com","plevel":4}
+[2020/08/16 15:00:46][INFO][emailNotFound]  Trying query: com.mysql.cj.jdbc.ClientPreparedStatement: SELECT Count(*) as EmailFound FROM user WHERE email = "cress123@gmail.com";
+[2020/08/16 15:00:46][INFO][emailNotFound]  Query succeeded.
+[2020/08/16 15:00:46][INFO][sufficientPrivilege]  Trying query: com.mysql.cj.jdbc.ClientPreparedStatement: SELECT plevel FROM user WHERE email = "cress123@gmail.com";
+[2020/08/16 15:00:46][INFO][sufficientPrivilege]  Query succeeded.
+[2020/08/16 15:00:46][WARNING][verifyPrivilege]  User has insufficient privilege level.
+[2020/08/16 15:01:04][INFO][sessionValidation]  1
+[2020/08/16 15:01:04][WARNING][sessionValidation]  CURRENT SESSION REVOKED. NEW SESSION MADE WITHOUT LOGIN.
+[2020/08/16 15:01:04][INFO][addNewSession]  Trying query: com.mysql.cj.jdbc.ClientPreparedStatement: INSERT INTO session(session_id, email, status, time_created, last_used, expr_time) VALUES ('7cf22191fac672047bda8b51abea6e8a0dc68fb2a65a377ac8955579029d9db48c5dd31aa3ee2a7d8bb1861cb15394d9bb9ac108323a1e6c4ddf7090e1effad8','cress123@gmail.com',1,'2020-08-16 15:01:04.135','2020-08-16 15:01:04.135','2020-08-16 15:31:04.135')
+[2020/08/16 15:01:04][INFO][addNewSession]  Query succeeded.
+[2020/08/16 15:01:15][INFO][sessionValidation]  1
+[2020/08/16 15:01:15][WARNING][sessionValidation]  CURRENT SESSION REVOKED. NEW SESSION MADE WITHOUT LOGIN.
+[2020/08/16 15:01:15][INFO][addNewSession]  Trying query: com.mysql.cj.jdbc.ClientPreparedStatement: INSERT INTO session(session_id, email, status, time_created, last_used, expr_time) VALUES ('7e1fb12b0dbb455563e11d417d71029508a8ea40915f4c23fd8846c304b33319824505267ebb4193a634c385ad35bc9b097d193aa7aae75ad9fc4cb47239e55c','cress123@gmail.com',1,'2020-08-16 15:01:15.985','2020-08-16 15:01:15.985','2020-08-16 15:31:15.985')
+[2020/08/16 15:01:15][INFO][addNewSession]  Query succeeded.

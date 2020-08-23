@@ -1,1 +1,0 @@
-web: java -Dserver.port=$PORT $JAVA_OPTS -jar build/libs/edu.uci.ics.dtablac.service.idm.jar -c config.yaml

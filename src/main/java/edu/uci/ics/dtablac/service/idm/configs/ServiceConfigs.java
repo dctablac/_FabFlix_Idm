@@ -4,13 +4,13 @@ import edu.uci.ics.dtablac.service.idm.logger.ServiceLogger;
 
 public class ServiceConfigs {
 
-    public static final int MIN_SERVICE_PORT = 370;
+    public static final int MIN_SERVICE_PORT = 1024;
     public static final int MAX_SERVICE_PORT = 65535;
 
     // Default gateway configs
     private final String DEFAULT_SCHEME = "https://";
-    private final String DEFAULT_HOSTNAME = "fabflix-idm.herokuapp.com";
-    private final int DEFAULT_PORT = 8080;
+    private final String DEFAULT_HOSTNAME = "0.0.0.0";
+    private final int DEFAULT_PORT = 6242;
     private final String DEFAULT_PATH = "/api/idm";
     // Default logger configs
     private final String DEFAULT_OUTPUTDIR = "./logs/";
@@ -106,7 +106,7 @@ public class ServiceConfigs {
                 System.err.println("Logging output file: " + outputFile);
             }
 
-            /*// Set DB Configs
+            // Set DB Configs
             dbUsername = cm.getDatabaseConfig().get("dbUsername");
             if (dbUsername == null) {
                 System.err.println("Database username not found in configuration file.");
@@ -172,7 +172,7 @@ public class ServiceConfigs {
             }
             else {
                 System.err.println("Database connection settings: " + dbSettings);
-            }*/
+            }
 
             // Set session configs
             timeout = Long.parseLong(cm.getSessionConfig().get("timeout"));
@@ -202,14 +202,14 @@ public class ServiceConfigs {
         ServiceLogger.LOGGER.config("Path: " + path);
         ServiceLogger.LOGGER.config("Logger output directory: " + outputDir);
 
-        /*// Log the current DB configs
+        // Log the current DB configs
         ServiceLogger.LOGGER.config("Database hostname: " + dbHostname);
         ServiceLogger.LOGGER.config("Database port: " + dbPort);
         ServiceLogger.LOGGER.config("Database username: " + dbUsername);
         ServiceLogger.LOGGER.config("Database password provided? " + (dbPassword != null));
         ServiceLogger.LOGGER.config("Database name: " + dbName);
         ServiceLogger.LOGGER.config("Database driver: " + dbDriver);
-        ServiceLogger.LOGGER.config("Database connection settings: " + dbSettings);*/
+        ServiceLogger.LOGGER.config("Database connection settings: " + dbSettings);
 
         // Log the current session configs
         ServiceLogger.LOGGER.config("Timeout: " + timeout);
@@ -241,7 +241,7 @@ public class ServiceConfigs {
     }
 
     public String getDbUrl() {
-        return "jdbc:mysql://bfd056424efd92:370bd420@us-cdbr-east-02.cleardb.com/heroku_e3f7fc48a1e5c29?reconnect=true";
+        return "jdbc:mysql://" + dbHostname + ":" + dbPort + "/" + dbName + dbSettings;
     }
 
     public String getDbUsername() {
