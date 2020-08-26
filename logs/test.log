@@ -1,85 +1,345 @@
-[2020/08/16 14:59:44][CONFIG][initService]  Starting service...
-[2020/08/16 14:59:44][CONFIG][currentConfigs]  Scheme: http://
-[2020/08/16 14:59:44][CONFIG][currentConfigs]  Hostname: 0.0.0.0
-[2020/08/16 14:59:44][CONFIG][currentConfigs]  Port: 12346
-[2020/08/16 14:59:44][CONFIG][currentConfigs]  Path: /api/idm
-[2020/08/16 14:59:44][CONFIG][currentConfigs]  Logger output directory: ./logs/
-[2020/08/16 14:59:44][CONFIG][currentConfigs]  Database hostname: localhost
-[2020/08/16 14:59:44][CONFIG][currentConfigs]  Database port: 3306
-[2020/08/16 14:59:44][CONFIG][currentConfigs]  Database username: root
-[2020/08/16 14:59:44][CONFIG][currentConfigs]  Database password provided? true
-[2020/08/16 14:59:44][CONFIG][currentConfigs]  Database name: fabflix_idm
-[2020/08/16 14:59:44][CONFIG][currentConfigs]  Database driver: com.mysql.cj.jdbc.Driver
-[2020/08/16 14:59:44][CONFIG][currentConfigs]  Database connection settings: ?autoReconnect=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=PST
-[2020/08/16 14:59:44][CONFIG][currentConfigs]  Timeout: 600000
-[2020/08/16 14:59:44][CONFIG][currentConfigs]  Expiration: 1800000
-[2020/08/16 14:59:44][CONFIG][connectToDatabase]  Connecting to database...
-[2020/08/16 14:59:44][CONFIG][connectToDatabase]  Database URL: jdbc:mysql://localhost:3306/fabflix_idm?autoReconnect=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=PST
-[2020/08/16 14:59:45][CONFIG][connectToDatabase]  Connected to database: jdbc:mysql://localhost:3306/fabflix_idm?autoReconnect=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=PST
-[2020/08/16 14:59:45][CONFIG][initHTTPServer]  Initializing HTTP server...
-[2020/08/16 14:59:45][CONFIG][initHTTPServer]  Building URI from configs...
-[2020/08/16 14:59:45][CONFIG][initHTTPServer]  Final URI: http://0.0.0.0:12346/api/idm
-[2020/08/16 14:59:45][CONFIG][initHTTPServer]  Set Jersey resources.
-[2020/08/16 14:59:45][CONFIG][initHTTPServer]  Set Jackson as serializer.
-[2020/08/16 14:59:45][CONFIG][initHTTPServer]  Set session timeout and token expiration.
-[2020/08/16 14:59:45][CONFIG][initHTTPServer]  Starting HTTP server...
-[2020/08/16 14:59:45][CONFIG][initHTTPServer]  HTTP server started.
-[2020/08/16 14:59:45][CONFIG][initService]  Service initialized.
-[2020/08/16 15:00:05][INFO][register]  Received [POST] register request.
-[2020/08/16 15:00:05][INFO][register]  Request:
-{"email":"cress123@gmail.com","password":["P","a","s","s","w","o","r","d","1"]}
-[2020/08/16 15:00:05][INFO][emailExistsInDB]  Query: SELECT COUNT(*) AS Total FROM user WHERE 1=1 && email = "cress123@gmail.com";
-[2020/08/16 15:00:05][INFO][emailExistsInDB]  Trying query: com.mysql.cj.jdbc.ClientPreparedStatement: SELECT COUNT(*) AS Total FROM user WHERE 1=1 && email = "cress123@gmail.com";
-[2020/08/16 15:00:05][INFO][emailExistsInDB]  Query succeeded.
-[2020/08/16 15:00:05][INFO][registerUser]  Query: INSERT INTO user (email, status, plevel, salt, pword) VALUES ("cress123@gmail.com", 1, 5, "fec2c955", "a7febb813dbe0620f52672ab9f767253acb4c96125eda51292e1787bab1cc9723daf55f2e13e0f48d6ae384ae0cbc2dc6c382f067e771c3e7e5ada464ef8527c");
-[2020/08/16 15:00:05][INFO][registerUser]  Trying query: com.mysql.cj.jdbc.ClientPreparedStatement: INSERT INTO user (email, status, plevel, salt, pword) VALUES ("cress123@gmail.com", 1, 5, "fec2c955", "a7febb813dbe0620f52672ab9f767253acb4c96125eda51292e1787bab1cc9723daf55f2e13e0f48d6ae384ae0cbc2dc6c382f067e771c3e7e5ada464ef8527c");
-[2020/08/16 15:00:05][INFO][registerUser]  Query succeeded.
-[2020/08/16 15:00:14][INFO][loginUser]  Received [POST] login request.
-[2020/08/16 15:00:14][INFO][loginUser]  Request:
-{"email":"cress123@gmail.com","password":["P","a","s","s","w","o","r","d","1"]}
-[2020/08/16 15:00:14][INFO][emailNotFound]  Trying query: com.mysql.cj.jdbc.ClientPreparedStatement: SELECT Count(*) as EmailFound FROM user WHERE email = "cress123@gmail.com";
-[2020/08/16 15:00:14][INFO][emailNotFound]  Query succeeded.
-[2020/08/16 15:00:14][INFO][passwordsUnequal]  Trying query: com.mysql.cj.jdbc.ClientPreparedStatement: SELECT pword, salt FROM user WHERE email = "cress123@gmail.com";
-[2020/08/16 15:00:14][INFO][passwordsUnequal]  Query succeeded.
-[2020/08/16 15:00:14][INFO][loginUser]  User logged in successfully.
-[2020/08/16 15:00:29][INFO][sessionValidation]  1
-[2020/08/16 15:00:29][WARNING][sessionValidation]  CURRENT SESSION REVOKED. NEW SESSION MADE WITHOUT LOGIN.
-[2020/08/16 15:00:29][INFO][addNewSession]  Trying query: com.mysql.cj.jdbc.ClientPreparedStatement: INSERT INTO session(session_id, email, status, time_created, last_used, expr_time) VALUES ('a269c892fe458247fba22dbc18d6ab020db86293c6060e7ae60bad5c1383b2a40d6964ecb64b80a1440e9d19edf5a0a2fa8ff31473732e4d6094fc70e42e2027','cress123@gmail.com',1,'2020-08-16 15:00:29.75','2020-08-16 15:00:29.75','2020-08-16 15:30:29.75')
-[2020/08/16 15:00:29][INFO][addNewSession]  Query succeeded.
-[2020/08/16 15:00:29][INFO][verifyPrivilege]  Request:
-{"email":"cress123@gmail.com","plevel":4}
-[2020/08/16 15:00:29][INFO][emailNotFound]  Trying query: com.mysql.cj.jdbc.ClientPreparedStatement: SELECT Count(*) as EmailFound FROM user WHERE email = "cress123@gmail.com";
-[2020/08/16 15:00:29][INFO][emailNotFound]  Query succeeded.
-[2020/08/16 15:00:29][INFO][sufficientPrivilege]  Trying query: com.mysql.cj.jdbc.ClientPreparedStatement: SELECT plevel FROM user WHERE email = "cress123@gmail.com";
-[2020/08/16 15:00:29][INFO][sufficientPrivilege]  Query succeeded.
-[2020/08/16 15:00:29][WARNING][verifyPrivilege]  User has insufficient privilege level.
-[2020/08/16 15:00:36][INFO][sessionValidation]  1
-[2020/08/16 15:00:36][WARNING][sessionValidation]  CURRENT SESSION REVOKED. NEW SESSION MADE WITHOUT LOGIN.
-[2020/08/16 15:00:36][INFO][addNewSession]  Trying query: com.mysql.cj.jdbc.ClientPreparedStatement: INSERT INTO session(session_id, email, status, time_created, last_used, expr_time) VALUES ('46bd732a5e41fd6e36b35af0f309b95a75e3cc744f963d406969d0b29f84b4b9790c2bf93d82e0d104482bfb0a44d9ea683cf7a0078d0e74a8c85a9f571415c9','cress123@gmail.com',1,'2020-08-16 15:00:36.336','2020-08-16 15:00:36.336','2020-08-16 15:30:36.336')
-[2020/08/16 15:00:36][INFO][addNewSession]  Query succeeded.
-[2020/08/16 15:00:36][INFO][verifyPrivilege]  Request:
-{"email":"cress123@gmail.com","plevel":4}
-[2020/08/16 15:00:36][INFO][emailNotFound]  Trying query: com.mysql.cj.jdbc.ClientPreparedStatement: SELECT Count(*) as EmailFound FROM user WHERE email = "cress123@gmail.com";
-[2020/08/16 15:00:36][INFO][emailNotFound]  Query succeeded.
-[2020/08/16 15:00:36][INFO][sufficientPrivilege]  Trying query: com.mysql.cj.jdbc.ClientPreparedStatement: SELECT plevel FROM user WHERE email = "cress123@gmail.com";
-[2020/08/16 15:00:36][INFO][sufficientPrivilege]  Query succeeded.
-[2020/08/16 15:00:36][WARNING][verifyPrivilege]  User has insufficient privilege level.
-[2020/08/16 15:00:46][INFO][sessionValidation]  1
-[2020/08/16 15:00:46][WARNING][sessionValidation]  CURRENT SESSION REVOKED. NEW SESSION MADE WITHOUT LOGIN.
-[2020/08/16 15:00:46][INFO][addNewSession]  Trying query: com.mysql.cj.jdbc.ClientPreparedStatement: INSERT INTO session(session_id, email, status, time_created, last_used, expr_time) VALUES ('e311a0af678e3d1a524f2abf919356ac5af15db5d4e73c6f53faf0a24c804c711de093b873d9408a493e46a2a64494f3af2fbb4a85dd88702605b64176c7c708','cress123@gmail.com',1,'2020-08-16 15:00:45.997','2020-08-16 15:00:45.997','2020-08-16 15:30:45.997')
-[2020/08/16 15:00:46][INFO][addNewSession]  Query succeeded.
-[2020/08/16 15:00:46][INFO][verifyPrivilege]  Request:
-{"email":"cress123@gmail.com","plevel":4}
-[2020/08/16 15:00:46][INFO][emailNotFound]  Trying query: com.mysql.cj.jdbc.ClientPreparedStatement: SELECT Count(*) as EmailFound FROM user WHERE email = "cress123@gmail.com";
-[2020/08/16 15:00:46][INFO][emailNotFound]  Query succeeded.
-[2020/08/16 15:00:46][INFO][sufficientPrivilege]  Trying query: com.mysql.cj.jdbc.ClientPreparedStatement: SELECT plevel FROM user WHERE email = "cress123@gmail.com";
-[2020/08/16 15:00:46][INFO][sufficientPrivilege]  Query succeeded.
-[2020/08/16 15:00:46][WARNING][verifyPrivilege]  User has insufficient privilege level.
-[2020/08/16 15:01:04][INFO][sessionValidation]  1
-[2020/08/16 15:01:04][WARNING][sessionValidation]  CURRENT SESSION REVOKED. NEW SESSION MADE WITHOUT LOGIN.
-[2020/08/16 15:01:04][INFO][addNewSession]  Trying query: com.mysql.cj.jdbc.ClientPreparedStatement: INSERT INTO session(session_id, email, status, time_created, last_used, expr_time) VALUES ('7cf22191fac672047bda8b51abea6e8a0dc68fb2a65a377ac8955579029d9db48c5dd31aa3ee2a7d8bb1861cb15394d9bb9ac108323a1e6c4ddf7090e1effad8','cress123@gmail.com',1,'2020-08-16 15:01:04.135','2020-08-16 15:01:04.135','2020-08-16 15:31:04.135')
-[2020/08/16 15:01:04][INFO][addNewSession]  Query succeeded.
-[2020/08/16 15:01:15][INFO][sessionValidation]  1
-[2020/08/16 15:01:15][WARNING][sessionValidation]  CURRENT SESSION REVOKED. NEW SESSION MADE WITHOUT LOGIN.
-[2020/08/16 15:01:15][INFO][addNewSession]  Trying query: com.mysql.cj.jdbc.ClientPreparedStatement: INSERT INTO session(session_id, email, status, time_created, last_used, expr_time) VALUES ('7e1fb12b0dbb455563e11d417d71029508a8ea40915f4c23fd8846c304b33319824505267ebb4193a634c385ad35bc9b097d193aa7aae75ad9fc4cb47239e55c','cress123@gmail.com',1,'2020-08-16 15:01:15.985','2020-08-16 15:01:15.985','2020-08-16 15:31:15.985')
-[2020/08/16 15:01:15][INFO][addNewSession]  Query succeeded.
+[2020/08/25 16:41:11][CONFIG][initService]  Starting service...
+[2020/08/25 16:41:11][CONFIG][currentConfigs]  Scheme: http://
+[2020/08/25 16:41:11][CONFIG][currentConfigs]  Hostname: 0.0.0.0
+[2020/08/25 16:41:11][CONFIG][currentConfigs]  Port: 12346
+[2020/08/25 16:41:11][CONFIG][currentConfigs]  Path: /api/idm
+[2020/08/25 16:41:11][CONFIG][currentConfigs]  Logger output directory: ./logs/
+[2020/08/25 16:41:11][CONFIG][currentConfigs]  Database hostname: localhost
+[2020/08/25 16:41:11][CONFIG][currentConfigs]  Database port: 3306
+[2020/08/25 16:41:11][CONFIG][currentConfigs]  Database username: root
+[2020/08/25 16:41:11][CONFIG][currentConfigs]  Database password provided? true
+[2020/08/25 16:41:11][CONFIG][currentConfigs]  Database name: fabflix_idm
+[2020/08/25 16:41:11][CONFIG][currentConfigs]  Database driver: com.mysql.cj.jdbc.Driver
+[2020/08/25 16:41:11][CONFIG][currentConfigs]  Database connection settings: ?autoReconnect=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=PST
+[2020/08/25 16:41:11][CONFIG][currentConfigs]  Timeout: 600000
+[2020/08/25 16:41:11][CONFIG][currentConfigs]  Expiration: 1800000
+[2020/08/25 16:41:11][CONFIG][connectToDatabase]  Connecting to database...
+[2020/08/25 16:41:11][CONFIG][connectToDatabase]  Database URL: jdbc:mysql://localhost:3306/fabflix_idm?autoReconnect=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=PST
+[2020/08/25 16:41:12][CONFIG][connectToDatabase]  Connected to database: jdbc:mysql://localhost:3306/fabflix_idm?autoReconnect=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=PST
+[2020/08/25 16:41:12][CONFIG][initHTTPServer]  Initializing HTTP server...
+[2020/08/25 16:41:12][CONFIG][initHTTPServer]  Building URI from configs...
+[2020/08/25 16:41:12][CONFIG][initHTTPServer]  Final URI: http://0.0.0.0:12346/api/idm
+[2020/08/25 16:41:12][CONFIG][initHTTPServer]  Set Jersey resources.
+[2020/08/25 16:41:12][CONFIG][initHTTPServer]  Set Jackson as serializer.
+[2020/08/25 16:41:12][CONFIG][initHTTPServer]  Set session timeout and token expiration.
+[2020/08/25 16:41:12][CONFIG][initHTTPServer]  Starting HTTP server...
+[2020/08/25 16:41:12][CONFIG][initHTTPServer]  HTTP server started.
+[2020/08/25 16:41:12][CONFIG][initService]  Service initialized.
+[2020/08/25 16:43:39][INFO][register]  Received [POST] register request.
+[2020/08/25 16:43:39][INFO][register]  Request:
+{"email":"dctablac1@gmail.com","password":["P","a","s","s","w","o","r","d","1"]}
+[2020/08/25 16:43:39][INFO][emailExistsInDB]  Query: SELECT COUNT(*) AS Total FROM user WHERE 1=1 && email = "dctablac1@gmail.com";
+[2020/08/25 16:43:39][INFO][emailExistsInDB]  Trying query: com.mysql.cj.jdbc.ClientPreparedStatement: SELECT COUNT(*) AS Total FROM user WHERE 1=1 && email = "dctablac1@gmail.com";
+[2020/08/25 16:43:39][INFO][emailExistsInDB]  Query succeeded.
+[2020/08/25 16:48:12][INFO][register]  Received [POST] register request.
+[2020/08/25 16:48:12][INFO][register]  Request:
+{"email":"dctablac1@gmail.com","password":["P","a","s","s","w","o","r","d","1"]}
+[2020/08/25 16:48:12][INFO][emailExistsInDB]  Query: SELECT COUNT(*) AS Total FROM user WHERE 1=1 && email = "dctablac1@gmail.com";
+[2020/08/25 16:48:12][INFO][emailExistsInDB]  Trying query: com.mysql.cj.jdbc.ClientPreparedStatement: SELECT COUNT(*) AS Total FROM user WHERE 1=1 && email = "dctablac1@gmail.com";
+[2020/08/25 16:48:12][INFO][emailExistsInDB]  Query succeeded.
+[2020/08/25 16:48:16][INFO][register]  Received [POST] register request.
+[2020/08/25 16:48:16][INFO][register]  Request:
+{"email":"dctablac1@gmail.com","password":["P","a","s","s","w","o","r","d","1","s","s"]}
+[2020/08/25 16:48:16][INFO][emailExistsInDB]  Query: SELECT COUNT(*) AS Total FROM user WHERE 1=1 && email = "dctablac1@gmail.com";
+[2020/08/25 16:48:16][INFO][emailExistsInDB]  Trying query: com.mysql.cj.jdbc.ClientPreparedStatement: SELECT COUNT(*) AS Total FROM user WHERE 1=1 && email = "dctablac1@gmail.com";
+[2020/08/25 16:48:16][INFO][emailExistsInDB]  Query succeeded.
+[2020/08/25 16:48:27][INFO][register]  Received [POST] register request.
+[2020/08/25 16:48:27][INFO][register]  Request:
+{"email":"dctablac2@gmail.com","password":["s","s","a","p"]}
+[2020/08/25 16:48:48][INFO][register]  Received [POST] register request.
+[2020/08/25 16:48:48][INFO][register]  Request:
+{"email":"dctablac3@gmail.com","password":["P","a","s","s","w","o","r","d","1"]}
+[2020/08/25 16:48:48][INFO][emailExistsInDB]  Query: SELECT COUNT(*) AS Total FROM user WHERE 1=1 && email = "dctablac3@gmail.com";
+[2020/08/25 16:48:48][INFO][emailExistsInDB]  Trying query: com.mysql.cj.jdbc.ClientPreparedStatement: SELECT COUNT(*) AS Total FROM user WHERE 1=1 && email = "dctablac3@gmail.com";
+[2020/08/25 16:48:48][INFO][emailExistsInDB]  Query succeeded.
+[2020/08/25 16:48:48][INFO][registerUser]  Query: INSERT INTO user (email, status, plevel, salt, pword) VALUES ("dctablac3@gmail.com", 1, 5, "e47f6640", "68810eb722763ce4a1e5ae67db2f3248dfc7e668d5c70af5be7d5aac9bafd41a6ec0f4cb2178f89085d41cbdcb3e9da536e0decad328c663ad37b9ef50e5de7e");
+[2020/08/25 16:48:48][INFO][registerUser]  Trying query: com.mysql.cj.jdbc.ClientPreparedStatement: INSERT INTO user (email, status, plevel, salt, pword) VALUES ("dctablac3@gmail.com", 1, 5, "e47f6640", "68810eb722763ce4a1e5ae67db2f3248dfc7e668d5c70af5be7d5aac9bafd41a6ec0f4cb2178f89085d41cbdcb3e9da536e0decad328c663ad37b9ef50e5de7e");
+[2020/08/25 16:48:48][INFO][registerUser]  Query succeeded.
+[2020/08/25 16:49:00][INFO][loginUser]  Received [POST] login request.
+[2020/08/25 16:49:00][INFO][loginUser]  Request:
+{"email":"dctablac3@gmail.com","password":["P","a","s","s","w","o","r","d","1"]}
+[2020/08/25 16:49:00][INFO][emailNotFound]  Trying query: com.mysql.cj.jdbc.ClientPreparedStatement: SELECT Count(*) as EmailFound FROM user WHERE email = "dctablac3@gmail.com";
+[2020/08/25 16:49:00][INFO][emailNotFound]  Query succeeded.
+[2020/08/25 16:49:00][INFO][passwordsUnequal]  Trying query: com.mysql.cj.jdbc.ClientPreparedStatement: SELECT pword, salt FROM user WHERE email = "dctablac3@gmail.com";
+[2020/08/25 16:49:00][INFO][passwordsUnequal]  Query succeeded.
+[2020/08/25 16:49:00][INFO][loginUser]  User logged in successfully.
+[2020/08/25 16:50:55][INFO][sessionValidation]  1
+[2020/08/25 16:50:55][WARNING][sessionValidation]  CURRENT SESSION REVOKED. NEW SESSION MADE WITHOUT LOGIN.
+[2020/08/25 16:50:55][INFO][addNewSession]  Trying query: com.mysql.cj.jdbc.ClientPreparedStatement: INSERT INTO session(session_id, email, status, time_created, last_used, expr_time) VALUES ('9a537cd5ecc14ab04dcfc15568acda7e678b0ac83f106d688971fee8587cc283da3f06c9da000a7eb9be7db0acc2cb668ea3bddc3ae25aa841791025f53c2dbe','dctablac3@gmail.com',1,'2020-08-25 16:50:55.845','2020-08-25 16:50:55.845','2020-08-25 17:20:55.845')
+[2020/08/25 16:50:55][INFO][addNewSession]  Query succeeded.
+[2020/08/25 16:50:58][INFO][sessionValidation]  1
+[2020/08/25 16:50:58][WARNING][sessionValidation]  CURRENT SESSION REVOKED. NEW SESSION MADE WITHOUT LOGIN.
+[2020/08/25 16:50:58][INFO][addNewSession]  Trying query: com.mysql.cj.jdbc.ClientPreparedStatement: INSERT INTO session(session_id, email, status, time_created, last_used, expr_time) VALUES ('c87204a20f896ee5de749c2f6e71533add610db06bfe43cfaa05c3895d34fc3b8a62a0661cf559941d2c59140f0b2c528db2bb8e4562ee5cae2b73c174c15b2c','dctablac3@gmail.com',1,'2020-08-25 16:50:58.058','2020-08-25 16:50:58.058','2020-08-25 17:20:58.058')
+[2020/08/25 16:50:58][INFO][addNewSession]  Query succeeded.
+[2020/08/25 16:52:18][INFO][sessionValidation]  1
+[2020/08/25 16:52:18][WARNING][sessionValidation]  CURRENT SESSION REVOKED. NEW SESSION MADE WITHOUT LOGIN.
+[2020/08/25 16:52:18][INFO][addNewSession]  Trying query: com.mysql.cj.jdbc.ClientPreparedStatement: INSERT INTO session(session_id, email, status, time_created, last_used, expr_time) VALUES ('dcbaeccce9fb05357a7d823147e3821aa0c09284ef5e3324770202ae09233626565bb5e7c65e7c6dfb5b176717d83e175cf266029638d73b7cfde1676f01c9e9','dctablac3@gmail.com',1,'2020-08-25 16:52:18.119','2020-08-25 16:52:18.119','2020-08-25 17:22:18.119')
+[2020/08/25 16:52:18][INFO][addNewSession]  Query succeeded.
+[2020/08/25 16:52:19][INFO][sessionValidation]  1
+[2020/08/25 16:52:19][WARNING][sessionValidation]  CURRENT SESSION REVOKED. NEW SESSION MADE WITHOUT LOGIN.
+[2020/08/25 16:52:19][INFO][addNewSession]  Trying query: com.mysql.cj.jdbc.ClientPreparedStatement: INSERT INTO session(session_id, email, status, time_created, last_used, expr_time) VALUES ('9e4c8fe3065c30f40debdb34ecd02bca1872cef41295e3463ffc098c804f8699d0d45bf10330209cbe134ee9e9430109cbf508376e55b8fc588af7a4d9a0b3b3','dctablac3@gmail.com',1,'2020-08-25 16:52:19.604','2020-08-25 16:52:19.604','2020-08-25 17:22:19.604')
+[2020/08/25 16:52:19][INFO][addNewSession]  Query succeeded.
+[2020/08/25 16:52:25][INFO][sessionValidation]  1
+[2020/08/25 16:52:25][WARNING][sessionValidation]  CURRENT SESSION REVOKED. NEW SESSION MADE WITHOUT LOGIN.
+[2020/08/25 16:52:25][INFO][addNewSession]  Trying query: com.mysql.cj.jdbc.ClientPreparedStatement: INSERT INTO session(session_id, email, status, time_created, last_used, expr_time) VALUES ('97146a370d146cdfb8162b73ed311b06f9fd2c0b5f966777bac66ad77067b0387e5556b9814edc1540b41311b55cec157a94881d629f4057f46462543a7e7bdb','dctablac3@gmail.com',1,'2020-08-25 16:52:25.801','2020-08-25 16:52:25.801','2020-08-25 17:22:25.801')
+[2020/08/25 16:52:25][INFO][addNewSession]  Query succeeded.
+[2020/08/25 16:52:29][INFO][sessionValidation]  1
+[2020/08/25 16:52:29][WARNING][sessionValidation]  CURRENT SESSION REVOKED. NEW SESSION MADE WITHOUT LOGIN.
+[2020/08/25 16:52:29][INFO][addNewSession]  Trying query: com.mysql.cj.jdbc.ClientPreparedStatement: INSERT INTO session(session_id, email, status, time_created, last_used, expr_time) VALUES ('12c82d64c13f5618be4b31a40b90f64f18d2096a04a9c21d71594aef4e71afe92675755e09f74419f8b86417bfaf3fc85297ab483dd3b87270a192e47e4b170e','dctablac3@gmail.com',1,'2020-08-25 16:52:29.077','2020-08-25 16:52:29.077','2020-08-25 17:22:29.077')
+[2020/08/25 16:52:29][INFO][addNewSession]  Query succeeded.
+[2020/08/25 16:52:31][INFO][sessionValidation]  1
+[2020/08/25 16:52:31][WARNING][sessionValidation]  CURRENT SESSION REVOKED. NEW SESSION MADE WITHOUT LOGIN.
+[2020/08/25 16:52:31][INFO][addNewSession]  Trying query: com.mysql.cj.jdbc.ClientPreparedStatement: INSERT INTO session(session_id, email, status, time_created, last_used, expr_time) VALUES ('cd17e6e0bd0fd95ee6a785b122a3e2f4198d3de36a721f341444dbd0d5d8d098d0310a3ed8f3bb7ce79a0cd1ebf0f9b770e201bbd072b698944f7fa2c27ac8e9','dctablac3@gmail.com',1,'2020-08-25 16:52:31.134','2020-08-25 16:52:31.134','2020-08-25 17:22:31.134')
+[2020/08/25 16:52:31][INFO][addNewSession]  Query succeeded.
+[2020/08/25 16:52:32][INFO][sessionValidation]  1
+[2020/08/25 16:52:32][WARNING][sessionValidation]  CURRENT SESSION REVOKED. NEW SESSION MADE WITHOUT LOGIN.
+[2020/08/25 16:52:32][INFO][addNewSession]  Trying query: com.mysql.cj.jdbc.ClientPreparedStatement: INSERT INTO session(session_id, email, status, time_created, last_used, expr_time) VALUES ('33a93da8edcd8b80913a846975f6a7e78ee4afc24634cb2aa6a7f614f457a48f76ed4286ff9a42dcc1ef9485b4e811fbc0cd5e5a86c91835e77a8e644f0c0a9c','dctablac3@gmail.com',1,'2020-08-25 16:52:32.845','2020-08-25 16:52:32.845','2020-08-25 17:22:32.845')
+[2020/08/25 16:52:32][INFO][addNewSession]  Query succeeded.
+[2020/08/25 16:52:36][INFO][sessionValidation]  1
+[2020/08/25 16:52:36][WARNING][sessionValidation]  CURRENT SESSION REVOKED. NEW SESSION MADE WITHOUT LOGIN.
+[2020/08/25 16:52:36][INFO][addNewSession]  Trying query: com.mysql.cj.jdbc.ClientPreparedStatement: INSERT INTO session(session_id, email, status, time_created, last_used, expr_time) VALUES ('3d461bf66da60a44d6066fc19edd8c49190e2ca04216d629083366d25009e789442cbd4e347a244895dab611fab11667083ce073211a36e9e1039b15295ac3bb','dctablac3@gmail.com',1,'2020-08-25 16:52:36.141','2020-08-25 16:52:36.141','2020-08-25 17:22:36.141')
+[2020/08/25 16:52:36][INFO][addNewSession]  Query succeeded.
+[2020/08/25 16:52:59][INFO][sessionValidation]  1
+[2020/08/25 16:52:59][WARNING][sessionValidation]  CURRENT SESSION REVOKED. NEW SESSION MADE WITHOUT LOGIN.
+[2020/08/25 16:52:59][INFO][addNewSession]  Trying query: com.mysql.cj.jdbc.ClientPreparedStatement: INSERT INTO session(session_id, email, status, time_created, last_used, expr_time) VALUES ('a4246f160b91f8628268e72869614397d9594f5559cefe8a285d9b5204bab77c1cdcd1677dee62d43e9e79d2ef6dfd876b269dfe877ae53d18fb44b6a57dc8a5','dctablac3@gmail.com',1,'2020-08-25 16:52:59.644','2020-08-25 16:52:59.644','2020-08-25 17:22:59.644')
+[2020/08/25 16:52:59][INFO][addNewSession]  Query succeeded.
+[2020/08/25 16:53:02][INFO][sessionValidation]  1
+[2020/08/25 16:53:02][WARNING][sessionValidation]  CURRENT SESSION REVOKED. NEW SESSION MADE WITHOUT LOGIN.
+[2020/08/25 16:53:02][INFO][addNewSession]  Trying query: com.mysql.cj.jdbc.ClientPreparedStatement: INSERT INTO session(session_id, email, status, time_created, last_used, expr_time) VALUES ('36a62eeeace487b204a23dd17440a197e30cdd0d4cb550613095595c92cac686112cffa1f22767c14ec969a15b809f3d21ff23694bf1d011eb85327837e8f203','dctablac3@gmail.com',1,'2020-08-25 16:53:02.641','2020-08-25 16:53:02.641','2020-08-25 17:23:02.641')
+[2020/08/25 16:53:02][INFO][addNewSession]  Query succeeded.
+[2020/08/25 16:53:04][INFO][sessionValidation]  1
+[2020/08/25 16:53:04][WARNING][sessionValidation]  CURRENT SESSION REVOKED. NEW SESSION MADE WITHOUT LOGIN.
+[2020/08/25 16:53:04][INFO][addNewSession]  Trying query: com.mysql.cj.jdbc.ClientPreparedStatement: INSERT INTO session(session_id, email, status, time_created, last_used, expr_time) VALUES ('ff52a32d93987ab006291de8acdec7dbcba38c13cd52c1d64ec575475bc4c7ef46156ceec925e5b233d6a9b2f4963184c15f19748f91776efb5aaeb084ac8237','dctablac3@gmail.com',1,'2020-08-25 16:53:04.88','2020-08-25 16:53:04.88','2020-08-25 17:23:04.88')
+[2020/08/25 16:53:04][INFO][addNewSession]  Query succeeded.
+[2020/08/25 16:53:06][INFO][sessionValidation]  1
+[2020/08/25 16:53:06][WARNING][sessionValidation]  CURRENT SESSION REVOKED. NEW SESSION MADE WITHOUT LOGIN.
+[2020/08/25 16:53:06][INFO][addNewSession]  Trying query: com.mysql.cj.jdbc.ClientPreparedStatement: INSERT INTO session(session_id, email, status, time_created, last_used, expr_time) VALUES ('9e7bfd5114218f20b6cd9533f4a43c3086d1897a8937e1a323b0652d957673861e4a5dc5c6cfa0b4a0ff24aa030901a5cebca336b643c24eea74aeeb86412b2a','dctablac3@gmail.com',1,'2020-08-25 16:53:06.811','2020-08-25 16:53:06.811','2020-08-25 17:23:06.811')
+[2020/08/25 16:53:06][INFO][addNewSession]  Query succeeded.
+[2020/08/25 16:53:08][INFO][sessionValidation]  1
+[2020/08/25 16:53:08][WARNING][sessionValidation]  CURRENT SESSION REVOKED. NEW SESSION MADE WITHOUT LOGIN.
+[2020/08/25 16:53:08][INFO][addNewSession]  Trying query: com.mysql.cj.jdbc.ClientPreparedStatement: INSERT INTO session(session_id, email, status, time_created, last_used, expr_time) VALUES ('61adfac449dea033b40359615ef792c182d86b1e22bfce93c2681fe46605057cb7af84bb61b0113526f0ed6d7ce0dff4d2c584f572461f50cb82d6d11fd8b435','dctablac3@gmail.com',1,'2020-08-25 16:53:08.288','2020-08-25 16:53:08.288','2020-08-25 17:23:08.288')
+[2020/08/25 16:53:08][INFO][addNewSession]  Query succeeded.
+[2020/08/25 16:53:56][INFO][sessionValidation]  1
+[2020/08/25 16:53:56][WARNING][sessionValidation]  CURRENT SESSION REVOKED. NEW SESSION MADE WITHOUT LOGIN.
+[2020/08/25 16:53:56][INFO][addNewSession]  Trying query: com.mysql.cj.jdbc.ClientPreparedStatement: INSERT INTO session(session_id, email, status, time_created, last_used, expr_time) VALUES ('2b1c2bee585687db6101ccef3612cb9d6bf8f728c851ead4040d2d98357576eb40a8c2ebc00fcfbd1dc0beeb3775d389234073f8a2796080c1b7aed921bd1719','dctablac3@gmail.com',1,'2020-08-25 16:53:56.975','2020-08-25 16:53:56.975','2020-08-25 17:23:56.975')
+[2020/08/25 16:53:56][INFO][addNewSession]  Query succeeded.
+[2020/08/25 16:54:17][INFO][sessionValidation]  1
+[2020/08/25 16:54:17][WARNING][sessionValidation]  CURRENT SESSION REVOKED. NEW SESSION MADE WITHOUT LOGIN.
+[2020/08/25 16:54:17][INFO][addNewSession]  Trying query: com.mysql.cj.jdbc.ClientPreparedStatement: INSERT INTO session(session_id, email, status, time_created, last_used, expr_time) VALUES ('9a45bb5d9d875af0277837c88cdfe6b5237913d5a82ddd7bdc54e5247a3185fa87917cc959528d79246ab8a421d8db2b1b8a16e6171ce46fef59b8ae22c425e5','dctablac3@gmail.com',1,'2020-08-25 16:54:17.317','2020-08-25 16:54:17.317','2020-08-25 17:24:17.317')
+[2020/08/25 16:54:17][INFO][addNewSession]  Query succeeded.
+[2020/08/25 16:54:17][INFO][verifyPrivilege]  Request:
+{"email":"dctablac3@gmail.com","plevel":4}
+[2020/08/25 16:54:17][INFO][emailNotFound]  Trying query: com.mysql.cj.jdbc.ClientPreparedStatement: SELECT Count(*) as EmailFound FROM user WHERE email = "dctablac3@gmail.com";
+[2020/08/25 16:54:17][INFO][emailNotFound]  Query succeeded.
+[2020/08/25 16:54:17][INFO][sufficientPrivilege]  Trying query: com.mysql.cj.jdbc.ClientPreparedStatement: SELECT plevel FROM user WHERE email = "dctablac3@gmail.com";
+[2020/08/25 16:54:17][INFO][sufficientPrivilege]  Query succeeded.
+[2020/08/25 16:54:17][WARNING][verifyPrivilege]  User has insufficient privilege level.
+[2020/08/25 16:54:29][INFO][sessionValidation]  1
+[2020/08/25 16:54:29][WARNING][sessionValidation]  CURRENT SESSION REVOKED. NEW SESSION MADE WITHOUT LOGIN.
+[2020/08/25 16:54:29][INFO][addNewSession]  Trying query: com.mysql.cj.jdbc.ClientPreparedStatement: INSERT INTO session(session_id, email, status, time_created, last_used, expr_time) VALUES ('58836a1e44470b16456b722a7f62f71001121912dfe198d4c8d51452c7d4707cbf75a2170e46addcf50401e64e9a3c7c0c92a282e993ae1d68894d1543507d92','dctablac3@gmail.com',1,'2020-08-25 16:54:29.853','2020-08-25 16:54:29.853','2020-08-25 17:24:29.853')
+[2020/08/25 16:54:29][INFO][addNewSession]  Query succeeded.
+[2020/08/25 16:54:29][INFO][verifyPrivilege]  Request:
+{"email":"dctablac3@gmail.com","plevel":4}
+[2020/08/25 16:54:29][INFO][emailNotFound]  Trying query: com.mysql.cj.jdbc.ClientPreparedStatement: SELECT Count(*) as EmailFound FROM user WHERE email = "dctablac3@gmail.com";
+[2020/08/25 16:54:29][INFO][emailNotFound]  Query succeeded.
+[2020/08/25 16:54:29][INFO][sufficientPrivilege]  Trying query: com.mysql.cj.jdbc.ClientPreparedStatement: SELECT plevel FROM user WHERE email = "dctablac3@gmail.com";
+[2020/08/25 16:54:29][INFO][sufficientPrivilege]  Query succeeded.
+[2020/08/25 16:54:29][WARNING][verifyPrivilege]  User has insufficient privilege level.
+[2020/08/25 16:54:54][INFO][sessionValidation]  1
+[2020/08/25 16:54:54][WARNING][sessionValidation]  CURRENT SESSION REVOKED. NEW SESSION MADE WITHOUT LOGIN.
+[2020/08/25 16:54:54][INFO][addNewSession]  Trying query: com.mysql.cj.jdbc.ClientPreparedStatement: INSERT INTO session(session_id, email, status, time_created, last_used, expr_time) VALUES ('355ad444cfe210cb67c3db55b9b0c581ffe3a6a0560772efd9e6309ac1cf2c1c312c7658b4aeb28532083f7cac5dc2eb64f903f5ded140d4edc6f038e16c968d','dctablac3@gmail.com',1,'2020-08-25 16:54:54.435','2020-08-25 16:54:54.435','2020-08-25 17:24:54.435')
+[2020/08/25 16:54:54][INFO][addNewSession]  Query succeeded.
+[2020/08/25 16:54:54][INFO][verifyPrivilege]  Request:
+{"email":"dctablac3@gmail.com","plevel":4}
+[2020/08/25 16:54:54][INFO][emailNotFound]  Trying query: com.mysql.cj.jdbc.ClientPreparedStatement: SELECT Count(*) as EmailFound FROM user WHERE email = "dctablac3@gmail.com";
+[2020/08/25 16:54:54][INFO][emailNotFound]  Query succeeded.
+[2020/08/25 16:54:54][INFO][sufficientPrivilege]  Trying query: com.mysql.cj.jdbc.ClientPreparedStatement: SELECT plevel FROM user WHERE email = "dctablac3@gmail.com";
+[2020/08/25 16:54:54][INFO][sufficientPrivilege]  Query succeeded.
+[2020/08/25 16:54:54][WARNING][verifyPrivilege]  User has insufficient privilege level.
+[2020/08/25 16:54:56][INFO][sessionValidation]  1
+[2020/08/25 16:54:56][WARNING][sessionValidation]  CURRENT SESSION REVOKED. NEW SESSION MADE WITHOUT LOGIN.
+[2020/08/25 16:54:56][INFO][addNewSession]  Trying query: com.mysql.cj.jdbc.ClientPreparedStatement: INSERT INTO session(session_id, email, status, time_created, last_used, expr_time) VALUES ('4c1254542fcf20b8cd6cc6eb507a8c8f8c79c595baea154d6cd82e4409c584afabeeb98621cf1f4b173101e7cbe470eb4e8d29b2e4d9d9d986b883c7fd294c1a','dctablac3@gmail.com',1,'2020-08-25 16:54:56.492','2020-08-25 16:54:56.492','2020-08-25 17:24:56.492')
+[2020/08/25 16:54:56][INFO][addNewSession]  Query succeeded.
+[2020/08/25 16:55:04][INFO][sessionValidation]  1
+[2020/08/25 16:55:04][WARNING][sessionValidation]  CURRENT SESSION REVOKED. NEW SESSION MADE WITHOUT LOGIN.
+[2020/08/25 16:55:04][INFO][addNewSession]  Trying query: com.mysql.cj.jdbc.ClientPreparedStatement: INSERT INTO session(session_id, email, status, time_created, last_used, expr_time) VALUES ('1c6ab63e1db77cf70fff50935cf71a565f5fad2d6e96110bc1793bb8667128b573c4943b55d5ce4db810b9137eb0aa0ccfdbdc9103b6e84e6f998800687d5701','dctablac3@gmail.com',1,'2020-08-25 16:55:04.887','2020-08-25 16:55:04.887','2020-08-25 17:25:04.887')
+[2020/08/25 16:55:04][INFO][addNewSession]  Query succeeded.
+[2020/08/25 16:56:11][INFO][sessionValidation]  1
+[2020/08/25 16:56:11][WARNING][sessionValidation]  CURRENT SESSION REVOKED. NEW SESSION MADE WITHOUT LOGIN.
+[2020/08/25 16:56:11][INFO][addNewSession]  Trying query: com.mysql.cj.jdbc.ClientPreparedStatement: INSERT INTO session(session_id, email, status, time_created, last_used, expr_time) VALUES ('0afcdf4376991e46aa55ca289275ff7cb5192a6023ab9e2883cef01840ab30b9b8033604d073b318f9879eec25b482f8a7849722e2ea4bc92b3722ee6e7ec827','dctablac3@gmail.com',1,'2020-08-25 16:56:11.39','2020-08-25 16:56:11.39','2020-08-25 17:26:11.39')
+[2020/08/25 16:56:11][INFO][addNewSession]  Query succeeded.
+[2020/08/25 17:05:17][INFO][register]  Received [POST] register request.
+[2020/08/25 17:05:17][INFO][register]  Request:
+{"email":"dctablac@gmail.com","password":["p","a","s","s"]}
+[2020/08/25 17:05:21][INFO][register]  Received [POST] register request.
+[2020/08/25 17:05:21][INFO][register]  Request:
+{"email":"dctablac@gmail.com","password":["P","a","s","s","w","o","r","d","1"]}
+[2020/08/25 17:05:21][INFO][emailExistsInDB]  Query: SELECT COUNT(*) AS Total FROM user WHERE 1=1 && email = "dctablac@gmail.com";
+[2020/08/25 17:05:21][INFO][emailExistsInDB]  Trying query: com.mysql.cj.jdbc.ClientPreparedStatement: SELECT COUNT(*) AS Total FROM user WHERE 1=1 && email = "dctablac@gmail.com";
+[2020/08/25 17:05:21][INFO][emailExistsInDB]  Query succeeded.
+[2020/08/25 17:05:21][INFO][registerUser]  Query: INSERT INTO user (email, status, plevel, salt, pword) VALUES ("dctablac@gmail.com", 1, 5, "ec85d63c", "690514f977bbaec822cc7834b71bed5204280c4e0e9883e031d348e28b3226c0010d1a4108e40d134a518a04b9d2586af5a67c9ab63f4f0070a999c25446486c");
+[2020/08/25 17:05:21][INFO][registerUser]  Trying query: com.mysql.cj.jdbc.ClientPreparedStatement: INSERT INTO user (email, status, plevel, salt, pword) VALUES ("dctablac@gmail.com", 1, 5, "ec85d63c", "690514f977bbaec822cc7834b71bed5204280c4e0e9883e031d348e28b3226c0010d1a4108e40d134a518a04b9d2586af5a67c9ab63f4f0070a999c25446486c");
+[2020/08/25 17:05:21][INFO][registerUser]  Query succeeded.
+[2020/08/25 17:05:28][INFO][loginUser]  Received [POST] login request.
+[2020/08/25 17:05:28][INFO][loginUser]  Request:
+{"email":"dctablac@gmail.com","password":["P","a","s","s","w","o","r","d","1"]}
+[2020/08/25 17:05:28][INFO][emailNotFound]  Trying query: com.mysql.cj.jdbc.ClientPreparedStatement: SELECT Count(*) as EmailFound FROM user WHERE email = "dctablac@gmail.com";
+[2020/08/25 17:05:28][INFO][emailNotFound]  Query succeeded.
+[2020/08/25 17:05:28][INFO][passwordsUnequal]  Trying query: com.mysql.cj.jdbc.ClientPreparedStatement: SELECT pword, salt FROM user WHERE email = "dctablac@gmail.com";
+[2020/08/25 17:05:28][INFO][passwordsUnequal]  Query succeeded.
+[2020/08/25 17:05:28][INFO][loginUser]  User logged in successfully.
+[2020/08/25 17:05:34][INFO][sessionValidation]  1
+[2020/08/25 17:05:34][WARNING][sessionValidation]  CURRENT SESSION REVOKED. NEW SESSION MADE WITHOUT LOGIN.
+[2020/08/25 17:05:34][INFO][addNewSession]  Trying query: com.mysql.cj.jdbc.ClientPreparedStatement: INSERT INTO session(session_id, email, status, time_created, last_used, expr_time) VALUES ('5bf4537b5b8df3c78c52cff803f912688724edac49b987b01e142713a9015034cbe35683764576060ec34f36d30f5d7ab65c138b0cad1e966086c52dc7d6cb35','dctablac@gmail.com',1,'2020-08-25 17:05:34.922','2020-08-25 17:05:34.922','2020-08-25 17:35:34.922')
+[2020/08/25 17:05:34][INFO][addNewSession]  Query succeeded.
+[2020/08/25 17:05:37][INFO][sessionValidation]  1
+[2020/08/25 17:05:37][WARNING][sessionValidation]  CURRENT SESSION REVOKED. NEW SESSION MADE WITHOUT LOGIN.
+[2020/08/25 17:05:37][INFO][addNewSession]  Trying query: com.mysql.cj.jdbc.ClientPreparedStatement: INSERT INTO session(session_id, email, status, time_created, last_used, expr_time) VALUES ('f060dd50fa3063850c2bad5c8b2246184995ac4b8c687c924403fe25c5fe8052ae5a6e13a2ba00bb1b9213c1cf1a0fae56d6b4b0102b137066579925f32d9d37','dctablac@gmail.com',1,'2020-08-25 17:05:37.493','2020-08-25 17:05:37.493','2020-08-25 17:35:37.493')
+[2020/08/25 17:05:37][INFO][addNewSession]  Query succeeded.
+[2020/08/25 17:05:48][INFO][sessionValidation]  1
+[2020/08/25 17:05:48][WARNING][sessionValidation]  CURRENT SESSION REVOKED. NEW SESSION MADE WITHOUT LOGIN.
+[2020/08/25 17:05:48][INFO][addNewSession]  Trying query: com.mysql.cj.jdbc.ClientPreparedStatement: INSERT INTO session(session_id, email, status, time_created, last_used, expr_time) VALUES ('3519ccd33a229b1e85cbc762be8941bf850bd92990d4203f359c551e8ecb9c280d359dbba58c37fa6515ff86ea7f363190eca69e2e8e105f1d2d038079874ac4','dctablac@gmail.com',1,'2020-08-25 17:05:48.54','2020-08-25 17:05:48.54','2020-08-25 17:35:48.54')
+[2020/08/25 17:05:48][INFO][addNewSession]  Query succeeded.
+[2020/08/25 17:05:48][INFO][verifyPrivilege]  Request:
+{"email":"dctablac@gmail.com","plevel":4}
+[2020/08/25 17:05:48][INFO][emailNotFound]  Trying query: com.mysql.cj.jdbc.ClientPreparedStatement: SELECT Count(*) as EmailFound FROM user WHERE email = "dctablac@gmail.com";
+[2020/08/25 17:05:48][INFO][emailNotFound]  Query succeeded.
+[2020/08/25 17:05:48][INFO][sufficientPrivilege]  Trying query: com.mysql.cj.jdbc.ClientPreparedStatement: SELECT plevel FROM user WHERE email = "dctablac@gmail.com";
+[2020/08/25 17:05:48][INFO][sufficientPrivilege]  Query succeeded.
+[2020/08/25 17:05:48][WARNING][verifyPrivilege]  User has insufficient privilege level.
+[2020/08/25 17:05:53][INFO][sessionValidation]  1
+[2020/08/25 17:05:53][WARNING][sessionValidation]  CURRENT SESSION REVOKED. NEW SESSION MADE WITHOUT LOGIN.
+[2020/08/25 17:05:53][INFO][addNewSession]  Trying query: com.mysql.cj.jdbc.ClientPreparedStatement: INSERT INTO session(session_id, email, status, time_created, last_used, expr_time) VALUES ('e2a6b0b1334cbcce31c198a0517b3e13a67b81ee9337393e1335ea73fba3695f47f34b012dc817c34345ecb943ec64635f7aadf2522235e553471e0e6f13dbd6','dctablac@gmail.com',1,'2020-08-25 17:05:53.485','2020-08-25 17:05:53.485','2020-08-25 17:35:53.485')
+[2020/08/25 17:05:53][INFO][addNewSession]  Query succeeded.
+[2020/08/25 17:05:53][INFO][verifyPrivilege]  Request:
+{"email":"dctablac@gmail.com","plevel":4}
+[2020/08/25 17:05:53][INFO][emailNotFound]  Trying query: com.mysql.cj.jdbc.ClientPreparedStatement: SELECT Count(*) as EmailFound FROM user WHERE email = "dctablac@gmail.com";
+[2020/08/25 17:05:53][INFO][emailNotFound]  Query succeeded.
+[2020/08/25 17:05:53][INFO][sufficientPrivilege]  Trying query: com.mysql.cj.jdbc.ClientPreparedStatement: SELECT plevel FROM user WHERE email = "dctablac@gmail.com";
+[2020/08/25 17:05:53][INFO][sufficientPrivilege]  Query succeeded.
+[2020/08/25 17:05:53][WARNING][verifyPrivilege]  User has insufficient privilege level.
+[2020/08/25 17:06:02][INFO][sessionValidation]  1
+[2020/08/25 17:06:02][WARNING][sessionValidation]  CURRENT SESSION REVOKED. NEW SESSION MADE WITHOUT LOGIN.
+[2020/08/25 17:06:02][INFO][addNewSession]  Trying query: com.mysql.cj.jdbc.ClientPreparedStatement: INSERT INTO session(session_id, email, status, time_created, last_used, expr_time) VALUES ('d4eb97bcf12364216ceb931f480894dfdc4a0e566520a58de3c707fa5daa56ce7adfcd9c8f299a3560761e0beca3fff81589696c6f9fbf18207d107af9df2de7','dctablac@gmail.com',1,'2020-08-25 17:06:02.795','2020-08-25 17:06:02.795','2020-08-25 17:36:02.795')
+[2020/08/25 17:06:02][INFO][addNewSession]  Query succeeded.
+[2020/08/25 17:06:02][INFO][verifyPrivilege]  Request:
+{"email":"dctablac@gmail.com","plevel":4}
+[2020/08/25 17:06:02][INFO][emailNotFound]  Trying query: com.mysql.cj.jdbc.ClientPreparedStatement: SELECT Count(*) as EmailFound FROM user WHERE email = "dctablac@gmail.com";
+[2020/08/25 17:06:02][INFO][emailNotFound]  Query succeeded.
+[2020/08/25 17:06:02][INFO][sufficientPrivilege]  Trying query: com.mysql.cj.jdbc.ClientPreparedStatement: SELECT plevel FROM user WHERE email = "dctablac@gmail.com";
+[2020/08/25 17:06:02][INFO][sufficientPrivilege]  Query succeeded.
+[2020/08/25 17:06:02][WARNING][verifyPrivilege]  User has insufficient privilege level.
+[2020/08/25 17:06:05][INFO][sessionValidation]  1
+[2020/08/25 17:06:05][WARNING][sessionValidation]  CURRENT SESSION REVOKED. NEW SESSION MADE WITHOUT LOGIN.
+[2020/08/25 17:06:05][INFO][addNewSession]  Trying query: com.mysql.cj.jdbc.ClientPreparedStatement: INSERT INTO session(session_id, email, status, time_created, last_used, expr_time) VALUES ('23fb90ce91cd4c82b27a8d5a2b85c9b76749612f08ad6c71adbdb5c7fe3bb3ff58412de88249ed45a118d8cdd69f43ee7b704f6275dec89dbac805526ccd300a','dctablac@gmail.com',1,'2020-08-25 17:06:05.657','2020-08-25 17:06:05.657','2020-08-25 17:36:05.657')
+[2020/08/25 17:06:05][INFO][addNewSession]  Query succeeded.
+[2020/08/25 17:06:12][INFO][sessionValidation]  1
+[2020/08/25 17:06:12][WARNING][sessionValidation]  CURRENT SESSION REVOKED. NEW SESSION MADE WITHOUT LOGIN.
+[2020/08/25 17:06:12][INFO][addNewSession]  Trying query: com.mysql.cj.jdbc.ClientPreparedStatement: INSERT INTO session(session_id, email, status, time_created, last_used, expr_time) VALUES ('f1532ef8341bdb9ecfe2c6967b05b78ebf347daa43a40ad84974e4474f275a5537889a6b9e448c871f6a89028baaa43cc9b2a3f349db744830bd0ba870d23620','dctablac@gmail.com',1,'2020-08-25 17:06:12.64','2020-08-25 17:06:12.64','2020-08-25 17:36:12.64')
+[2020/08/25 17:06:12][INFO][addNewSession]  Query succeeded.
+[2020/08/25 17:06:13][INFO][sessionValidation]  1
+[2020/08/25 17:06:13][WARNING][sessionValidation]  CURRENT SESSION REVOKED. NEW SESSION MADE WITHOUT LOGIN.
+[2020/08/25 17:06:13][INFO][addNewSession]  Trying query: com.mysql.cj.jdbc.ClientPreparedStatement: INSERT INTO session(session_id, email, status, time_created, last_used, expr_time) VALUES ('5d4fe70387d907b7af1473493a3f776cc8c04a9391f1964fe09a9cd28cb53111ba044b8250903b00c5265eb6c38fcaa3843d1075ffd29f46e0323ecff90585c0','dctablac@gmail.com',1,'2020-08-25 17:06:13.202','2020-08-25 17:06:13.202','2020-08-25 17:36:13.202')
+[2020/08/25 17:06:13][INFO][addNewSession]  Query succeeded.
+[2020/08/25 17:06:21][INFO][sessionValidation]  1
+[2020/08/25 17:06:21][WARNING][sessionValidation]  CURRENT SESSION REVOKED. NEW SESSION MADE WITHOUT LOGIN.
+[2020/08/25 17:06:21][INFO][addNewSession]  Trying query: com.mysql.cj.jdbc.ClientPreparedStatement: INSERT INTO session(session_id, email, status, time_created, last_used, expr_time) VALUES ('8eeb592240c7962a0b929601f81903904ec82024225c220561e61c3128214672f7fce6d7465399af93ce3031bc76b9b7955a1b6d6a872b999b6472f64c518013','dctablac@gmail.com',1,'2020-08-25 17:06:21.144','2020-08-25 17:06:21.144','2020-08-25 17:36:21.144')
+[2020/08/25 17:06:21][INFO][addNewSession]  Query succeeded.
+[2020/08/25 17:06:21][INFO][verifyPrivilege]  Request:
+{"email":"dctablac@gmail.com","plevel":4}
+[2020/08/25 17:06:21][INFO][emailNotFound]  Trying query: com.mysql.cj.jdbc.ClientPreparedStatement: SELECT Count(*) as EmailFound FROM user WHERE email = "dctablac@gmail.com";
+[2020/08/25 17:06:21][INFO][emailNotFound]  Query succeeded.
+[2020/08/25 17:06:21][INFO][sufficientPrivilege]  Trying query: com.mysql.cj.jdbc.ClientPreparedStatement: SELECT plevel FROM user WHERE email = "dctablac@gmail.com";
+[2020/08/25 17:06:21][INFO][sufficientPrivilege]  Query succeeded.
+[2020/08/25 17:06:21][WARNING][verifyPrivilege]  User has insufficient privilege level.
+[2020/08/25 17:06:23][INFO][sessionValidation]  1
+[2020/08/25 17:06:23][WARNING][sessionValidation]  CURRENT SESSION REVOKED. NEW SESSION MADE WITHOUT LOGIN.
+[2020/08/25 17:06:23][INFO][addNewSession]  Trying query: com.mysql.cj.jdbc.ClientPreparedStatement: INSERT INTO session(session_id, email, status, time_created, last_used, expr_time) VALUES ('d07b3109c23a4c4987f3cbd6d75df8dded882f52398e1aa1a94ab5253fbfd538fabcc8e1e2a98f4b93c41f8fd412360f86ad59567012cf7d0bf7384d1fae34b9','dctablac@gmail.com',1,'2020-08-25 17:06:23.442','2020-08-25 17:06:23.442','2020-08-25 17:36:23.442')
+[2020/08/25 17:06:23][INFO][addNewSession]  Query succeeded.
+[2020/08/25 17:06:23][INFO][verifyPrivilege]  Request:
+{"email":"dctablac@gmail.com","plevel":4}
+[2020/08/25 17:06:23][INFO][emailNotFound]  Trying query: com.mysql.cj.jdbc.ClientPreparedStatement: SELECT Count(*) as EmailFound FROM user WHERE email = "dctablac@gmail.com";
+[2020/08/25 17:06:23][INFO][emailNotFound]  Query succeeded.
+[2020/08/25 17:06:23][INFO][sufficientPrivilege]  Trying query: com.mysql.cj.jdbc.ClientPreparedStatement: SELECT plevel FROM user WHERE email = "dctablac@gmail.com";
+[2020/08/25 17:06:23][INFO][sufficientPrivilege]  Query succeeded.
+[2020/08/25 17:06:23][WARNING][verifyPrivilege]  User has insufficient privilege level.
+[2020/08/25 17:06:27][INFO][sessionValidation]  1
+[2020/08/25 17:06:27][WARNING][sessionValidation]  CURRENT SESSION REVOKED. NEW SESSION MADE WITHOUT LOGIN.
+[2020/08/25 17:06:27][INFO][addNewSession]  Trying query: com.mysql.cj.jdbc.ClientPreparedStatement: INSERT INTO session(session_id, email, status, time_created, last_used, expr_time) VALUES ('1ac76558d6f29cb9b83ded5a3d29cca494160b9779578c6d31aa0b409fe090961f4713a76bd59f2a2a8f0fefe52b05c163c1ab8b8b7b96cd70e7cc2b7f56e1d8','dctablac@gmail.com',1,'2020-08-25 17:06:27.665','2020-08-25 17:06:27.665','2020-08-25 17:36:27.665')
+[2020/08/25 17:06:27][INFO][addNewSession]  Query succeeded.
+[2020/08/25 17:06:27][INFO][verifyPrivilege]  Request:
+{"email":"dctablac@gmail.com","plevel":4}
+[2020/08/25 17:06:27][INFO][emailNotFound]  Trying query: com.mysql.cj.jdbc.ClientPreparedStatement: SELECT Count(*) as EmailFound FROM user WHERE email = "dctablac@gmail.com";
+[2020/08/25 17:06:27][INFO][emailNotFound]  Query succeeded.
+[2020/08/25 17:06:27][INFO][sufficientPrivilege]  Trying query: com.mysql.cj.jdbc.ClientPreparedStatement: SELECT plevel FROM user WHERE email = "dctablac@gmail.com";
+[2020/08/25 17:06:27][INFO][sufficientPrivilege]  Query succeeded.
+[2020/08/25 17:06:27][WARNING][verifyPrivilege]  User has insufficient privilege level.
+[2020/08/25 17:06:30][INFO][sessionValidation]  1
+[2020/08/25 17:06:30][WARNING][sessionValidation]  CURRENT SESSION REVOKED. NEW SESSION MADE WITHOUT LOGIN.
+[2020/08/25 17:06:30][INFO][addNewSession]  Trying query: com.mysql.cj.jdbc.ClientPreparedStatement: INSERT INTO session(session_id, email, status, time_created, last_used, expr_time) VALUES ('17bec8ea66d26a3e957c32a9af104fdd68809a2d419650fac36559c32fb5df769c69904b3311946e2784b60a6840029b134744770259b581687d9eadced110f2','dctablac@gmail.com',1,'2020-08-25 17:06:30.352','2020-08-25 17:06:30.352','2020-08-25 17:36:30.352')
+[2020/08/25 17:06:30][INFO][addNewSession]  Query succeeded.
+[2020/08/25 17:06:38][INFO][sessionValidation]  1
+[2020/08/25 17:06:38][WARNING][sessionValidation]  CURRENT SESSION REVOKED. NEW SESSION MADE WITHOUT LOGIN.
+[2020/08/25 17:06:38][INFO][addNewSession]  Trying query: com.mysql.cj.jdbc.ClientPreparedStatement: INSERT INTO session(session_id, email, status, time_created, last_used, expr_time) VALUES ('b68944fe2558d0bc2f2f7936d234c9ccdb618769cee0c0c147ecdaeee73162926e895a6dbbd68e5fca206dd1bf91bdcb832e9caacda17d8435a5386f4fc7dc64','dctablac@gmail.com',1,'2020-08-25 17:06:38.13','2020-08-25 17:06:38.13','2020-08-25 17:36:38.13')
+[2020/08/25 17:06:38][INFO][addNewSession]  Query succeeded.
+[2020/08/25 17:06:38][INFO][sessionValidation]  1
+[2020/08/25 17:06:38][WARNING][sessionValidation]  CURRENT SESSION REVOKED. NEW SESSION MADE WITHOUT LOGIN.
+[2020/08/25 17:06:38][INFO][addNewSession]  Trying query: com.mysql.cj.jdbc.ClientPreparedStatement: INSERT INTO session(session_id, email, status, time_created, last_used, expr_time) VALUES ('e4437794b1d30e62edacdf10d3d4c825df2200e05bc8dd6285ef209365e700c687c48d7e7ad1df7f40a6568796a975bd52fd0795156abda7283cf9938bfc8563','dctablac@gmail.com',1,'2020-08-25 17:06:38.695','2020-08-25 17:06:38.695','2020-08-25 17:36:38.695')
+[2020/08/25 17:06:38][INFO][addNewSession]  Query succeeded.
+[2020/08/25 17:06:44][INFO][sessionValidation]  1
+[2020/08/25 17:06:44][WARNING][sessionValidation]  CURRENT SESSION REVOKED. NEW SESSION MADE WITHOUT LOGIN.
+[2020/08/25 17:06:44][INFO][addNewSession]  Trying query: com.mysql.cj.jdbc.ClientPreparedStatement: INSERT INTO session(session_id, email, status, time_created, last_used, expr_time) VALUES ('746cb86818143f3d13869473eb22d9e04ab513baabe62b539e0e1fd70d1d9602f148c2ee0c46c0b38958b65b2ab9791b7519a65aaf800f4e1e8749b12c3125af','dctablac@gmail.com',1,'2020-08-25 17:06:44.151','2020-08-25 17:06:44.151','2020-08-25 17:36:44.151')
+[2020/08/25 17:06:44][INFO][addNewSession]  Query succeeded.
+[2020/08/25 17:06:46][INFO][sessionValidation]  1
+[2020/08/25 17:06:46][WARNING][sessionValidation]  CURRENT SESSION REVOKED. NEW SESSION MADE WITHOUT LOGIN.
+[2020/08/25 17:06:46][INFO][addNewSession]  Trying query: com.mysql.cj.jdbc.ClientPreparedStatement: INSERT INTO session(session_id, email, status, time_created, last_used, expr_time) VALUES ('d56e79efa5355f8da9493de83f3f519a2aeef2dea5e5c99605f69f0a2b6a92b915aa86f72dd7d5fb88865ce401db880be3b8ced599d72193a810bac96d73115b','dctablac@gmail.com',1,'2020-08-25 17:06:46.671','2020-08-25 17:06:46.671','2020-08-25 17:36:46.671')
+[2020/08/25 17:06:46][INFO][addNewSession]  Query succeeded.
+[2020/08/25 17:07:01][INFO][sessionValidation]  1
+[2020/08/25 17:07:01][WARNING][sessionValidation]  CURRENT SESSION REVOKED. NEW SESSION MADE WITHOUT LOGIN.
+[2020/08/25 17:07:01][INFO][addNewSession]  Trying query: com.mysql.cj.jdbc.ClientPreparedStatement: INSERT INTO session(session_id, email, status, time_created, last_used, expr_time) VALUES ('fa2ba6edbaf3fb5f6bb58b8a6cdd47151c3175b7a323a069f3c77163f15950df8bb6d80e3f88d710f1d4ff6d0c442dfef2eb4eaf590e4068613254a2bbdcce07','dctablac@gmail.com',1,'2020-08-25 17:07:01.443','2020-08-25 17:07:01.443','2020-08-25 17:37:01.443')
+[2020/08/25 17:07:01][INFO][addNewSession]  Query succeeded.
+[2020/08/25 17:07:01][INFO][verifyPrivilege]  Request:
+{"email":"dctablac@gmail.com","plevel":4}
+[2020/08/25 17:07:01][INFO][emailNotFound]  Trying query: com.mysql.cj.jdbc.ClientPreparedStatement: SELECT Count(*) as EmailFound FROM user WHERE email = "dctablac@gmail.com";
+[2020/08/25 17:07:01][INFO][emailNotFound]  Query succeeded.
+[2020/08/25 17:07:01][INFO][sufficientPrivilege]  Trying query: com.mysql.cj.jdbc.ClientPreparedStatement: SELECT plevel FROM user WHERE email = "dctablac@gmail.com";
+[2020/08/25 17:07:01][INFO][sufficientPrivilege]  Query succeeded.
+[2020/08/25 17:07:01][WARNING][verifyPrivilege]  User has insufficient privilege level.
+[2020/08/25 17:07:09][INFO][sessionValidation]  1
+[2020/08/25 17:07:09][WARNING][sessionValidation]  CURRENT SESSION REVOKED. NEW SESSION MADE WITHOUT LOGIN.
+[2020/08/25 17:07:09][INFO][addNewSession]  Trying query: com.mysql.cj.jdbc.ClientPreparedStatement: INSERT INTO session(session_id, email, status, time_created, last_used, expr_time) VALUES ('b1e72ae958af0292c829b5c615c8be5d506a13279d5d7c677959be68c9b054de20f0895f8bd0772dc8cd3d33722e9db1675a48dbd122c8054cb92a7646833149','dctablac@gmail.com',1,'2020-08-25 17:07:09.782','2020-08-25 17:07:09.782','2020-08-25 17:37:09.782')
+[2020/08/25 17:07:09][INFO][addNewSession]  Query succeeded.
+[2020/08/25 17:07:09][INFO][verifyPrivilege]  Request:
+{"email":"dctablac@gmail.com","plevel":4}
+[2020/08/25 17:07:09][INFO][emailNotFound]  Trying query: com.mysql.cj.jdbc.ClientPreparedStatement: SELECT Count(*) as EmailFound FROM user WHERE email = "dctablac@gmail.com";
+[2020/08/25 17:07:09][INFO][emailNotFound]  Query succeeded.
+[2020/08/25 17:07:09][INFO][sufficientPrivilege]  Trying query: com.mysql.cj.jdbc.ClientPreparedStatement: SELECT plevel FROM user WHERE email = "dctablac@gmail.com";
+[2020/08/25 17:07:09][INFO][sufficientPrivilege]  Query succeeded.
+[2020/08/25 17:07:09][WARNING][verifyPrivilege]  User has insufficient privilege level.
+[2020/08/25 17:07:14][INFO][sessionValidation]  1
+[2020/08/25 17:07:14][WARNING][sessionValidation]  CURRENT SESSION REVOKED. NEW SESSION MADE WITHOUT LOGIN.
+[2020/08/25 17:07:14][INFO][addNewSession]  Trying query: com.mysql.cj.jdbc.ClientPreparedStatement: INSERT INTO session(session_id, email, status, time_created, last_used, expr_time) VALUES ('53c251c5e4d1634e22d7576ef647c4749e854915d984accc225bc7a587b63326f5c792a99531558b5c0147ae47b5697154d6d314c5f61b3d73f20fb3a8368c72','dctablac@gmail.com',1,'2020-08-25 17:07:14.018','2020-08-25 17:07:14.018','2020-08-25 17:37:14.018')
+[2020/08/25 17:07:14][INFO][addNewSession]  Query succeeded.
+[2020/08/25 17:07:14][INFO][verifyPrivilege]  Request:
+{"email":"dctablac@gmail.com","plevel":4}
+[2020/08/25 17:07:14][INFO][emailNotFound]  Trying query: com.mysql.cj.jdbc.ClientPreparedStatement: SELECT Count(*) as EmailFound FROM user WHERE email = "dctablac@gmail.com";
+[2020/08/25 17:07:14][INFO][emailNotFound]  Query succeeded.
+[2020/08/25 17:07:14][INFO][sufficientPrivilege]  Trying query: com.mysql.cj.jdbc.ClientPreparedStatement: SELECT plevel FROM user WHERE email = "dctablac@gmail.com";
+[2020/08/25 17:07:14][INFO][sufficientPrivilege]  Query succeeded.
+[2020/08/25 17:07:14][WARNING][verifyPrivilege]  User has insufficient privilege level.
+[2020/08/25 17:07:15][INFO][sessionValidation]  1
+[2020/08/25 17:07:15][WARNING][sessionValidation]  CURRENT SESSION REVOKED. NEW SESSION MADE WITHOUT LOGIN.
+[2020/08/25 17:07:15][INFO][addNewSession]  Trying query: com.mysql.cj.jdbc.ClientPreparedStatement: INSERT INTO session(session_id, email, status, time_created, last_used, expr_time) VALUES ('5289c410451facef1116a58727f028cb6b9886e6314f7cc5da5531b9774af93a6aa6179d598ab64a39d1591ead472b93c21df5da30fa0ffe110eedc0f4446c89','dctablac@gmail.com',1,'2020-08-25 17:07:15.646','2020-08-25 17:07:15.646','2020-08-25 17:37:15.646')
+[2020/08/25 17:07:15][INFO][addNewSession]  Query succeeded.
+[2020/08/25 17:07:19][INFO][sessionValidation]  1
+[2020/08/25 17:07:19][WARNING][sessionValidation]  CURRENT SESSION REVOKED. NEW SESSION MADE WITHOUT LOGIN.
+[2020/08/25 17:07:19][INFO][addNewSession]  Trying query: com.mysql.cj.jdbc.ClientPreparedStatement: INSERT INTO session(session_id, email, status, time_created, last_used, expr_time) VALUES ('22c9cc3ffb228da87bdfde4084942b39d6630c84da0fe07f37d801e6b530d58d026400691de7cf6b85954e23670d30661bd853992f25d2226a2920da9720a567','dctablac@gmail.com',1,'2020-08-25 17:07:19.968','2020-08-25 17:07:19.968','2020-08-25 17:37:19.968')
+[2020/08/25 17:07:19][INFO][addNewSession]  Query succeeded.
+[2020/08/25 17:08:02][INFO][sessionValidation]  1
+[2020/08/25 17:08:02][WARNING][sessionValidation]  CURRENT SESSION REVOKED. NEW SESSION MADE WITHOUT LOGIN.
+[2020/08/25 17:08:02][INFO][addNewSession]  Trying query: com.mysql.cj.jdbc.ClientPreparedStatement: INSERT INTO session(session_id, email, status, time_created, last_used, expr_time) VALUES ('444f10e0b32726f998c2dc60cda55d789e68024a789391c7a08b40d6be9670c18a0f33e6dea299789462ed3e4b2ad01478339869db1683bda85c960210433b6e','dctablac@gmail.com',1,'2020-08-25 17:08:02.726','2020-08-25 17:08:02.726','2020-08-25 17:38:02.726')
+[2020/08/25 17:08:02][INFO][addNewSession]  Query succeeded.
+[2020/08/25 17:08:05][INFO][sessionValidation]  1
+[2020/08/25 17:08:05][WARNING][sessionValidation]  CURRENT SESSION REVOKED. NEW SESSION MADE WITHOUT LOGIN.
+[2020/08/25 17:08:05][INFO][addNewSession]  Trying query: com.mysql.cj.jdbc.ClientPreparedStatement: INSERT INTO session(session_id, email, status, time_created, last_used, expr_time) VALUES ('c5ccf2c8f1e0376ccac77c5cb692f72c8e7eaa62192154563c48db89d21eae65d9ab312e6e487fa16dd88ad9b6770c30b64d8f9189ce3102204b89bf119e3e80','dctablac@gmail.com',1,'2020-08-25 17:08:05.815','2020-08-25 17:08:05.815','2020-08-25 17:38:05.815')
+[2020/08/25 17:08:05][INFO][addNewSession]  Query succeeded.

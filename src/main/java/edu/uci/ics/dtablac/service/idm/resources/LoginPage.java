@@ -9,7 +9,6 @@ package edu.uci.ics.dtablac.service.idm.resources;
 //   new session.
 // Inserts/updates records in the "session" table.
 
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
